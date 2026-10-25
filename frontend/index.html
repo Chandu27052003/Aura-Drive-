@@ -1,0 +1,2909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AURA DRIVE INDIA — Authorized New Car Showroom, Compare, EMI & Online Booking</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            crimson: {
+              50: '#FFF1F2',
+              100: '#FFE4E6',
+              500: '#F43F5E',
+              600: '#E11D48',
+              700: '#BE123C',
+              800: '#9F1239'
+            },
+            charcoal: {
+              900: '#141417',
+              800: '#1E1E24',
+              700: '#2A2A32'
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #F7F6F3;
+      color: #141417;
+      overflow-x: hidden;
+      transition: background-color 0.22s ease, color 0.22s ease;
+    }
+    html.dark body {
+      background-color: #0E0F12;
+      color: #F8FAFC;
+    }
+
+    /* Spring Button Micro-Interactions */
+    .pop-btn {
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease, background-color 0.16s ease, border-color 0.16s ease;
+    }
+    .pop-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px -6px rgba(190, 18, 60, 0.18);
+    }
+    .pop-btn:active:not(:disabled) {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* Realistic Dealership Card */
+    .showroom-card {
+      background: #FFFFFF;
+      border: 1px solid #E6E4DF;
+      box-shadow: 0 2px 12px rgba(20, 20, 23, 0.04);
+      transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.26s ease, border-color 0.26s ease;
+    }
+    html.dark .showroom-card {
+      background: #16181E;
+      border-color: #262934;
+      box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.5);
+    }
+    .showroom-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 36px -12px rgba(20, 20, 23, 0.11);
+      border-color: #CBD5E1;
+    }
+    html.dark .showroom-card:hover {
+      border-color: #3B4052;
+      box-shadow: 0 20px 36px -12px rgba(0, 0, 0, 0.75);
+    }
+
+    /* Clean Studio Pod for Un-Distorted Car Cutouts */
+    .studio-pod {
+      background: linear-gradient(180deg, #FBFBFB 0%, #F1F3F6 100%);
+      position: relative;
+    }
+    html.dark .studio-pod {
+      background: linear-gradient(180deg, #1E222B 0%, #14171E 100%);
+    }
+
+    .floor-shadow {
+      background: radial-gradient(ellipse at center, rgba(20, 20, 23, 0.16) 0%, rgba(20, 20, 23, 0.04) 52%, transparent 72%);
+    }
+
+    @keyframes modalSlideUp {
+      0% { opacity: 0; transform: translateY(12px) scale(0.98); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .animate-modal {
+      animation: modalSlideUp 0.22s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    input[type="range"] {
+      accent-color: #BE123C;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-crimson-700 selection:text-white">
+
+  <!-- TOP CUSTOMER SERVICE & CITY RTO BAR -->
+  <div class="bg-charcoal-900 text-stone-300 text-xs py-2 px-4 border-b border-stone-800">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-4">
+        <span class="inline-flex items-center gap-1.5 font-semibold text-white">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          Authorized Multi-Brand New Car Showroom
+        </span>
+        <span class="text-stone-400 hidden md:inline">• 100% Ex-Factory New Vehicles • Zero-Dep Insurance & Instant RTO Registration</span>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-1.5">
+          <label for="citySelect" class="text-stone-400 text-[11px]">Select Your City:</label>
+          <select id="citySelect" onchange="handleCityChange()" class="bg-charcoal-800 text-white text-[11px] font-semibold px-2.5 py-1 rounded-md border border-stone-700 focus:outline-none focus:border-crimson-500">
+            <option value="Udupi / Mangaluru" data-tax="0.18" selected>Udupi / Mangaluru (KA)</option>
+            <option value="Bengaluru" data-tax="0.18">Bengaluru (KA)</option>
+            <option value="Mumbai" data-tax="0.14">Mumbai (MH)</option>
+            <option value="Delhi NCR" data-tax="0.11">Delhi NCR (DL)</option>
+            <option value="Hyderabad" data-tax="0.15">Hyderabad (TS)</option>
+            <option value="Chennai" data-tax="0.15">Chennai (TN)</option>
+          </select>
+        </div>
+        <span class="text-stone-400 hidden sm:inline text-[11px]">Concierge: <strong class="text-white">1800-209-8840</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY MAIN HEADER -->
+  <header class="sticky top-0 z-40 backdrop-blur-xl bg-white/95 dark:bg-charcoal-900/95 border-b border-stone-200/90 dark:border-stone-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-3">
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3 cursor-pointer" onclick="switchMainView('showroom')">
+        <div class="w-10 h-10 rounded-xl bg-crimson-700 text-white flex items-center justify-center font-black text-base tracking-tight shadow-sm">
+          AD
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold tracking-tight text-lg sm:text-xl text-stone-900 dark:text-white">AURA<span class="text-crimson-700 dark:text-crimson-500">DRIVE</span></span>
+            <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-stone-700">INDIA</span>
+          </div>
+          <p class="text-[11px] text-stone-500 dark:text-stone-400 hidden sm:block">Authorized New Cars • Compare Specifications • Auto Finance & Online Booking</p>
+        </div>
+      </div>
+
+      <!-- Center Navigation -->
+      <nav class="flex items-center gap-1 bg-stone-100 dark:bg-charcoal-800 p-1 rounded-xl border border-stone-200/80 dark:border-stone-700">
+        <button id="navBtnShowroom" onclick="switchMainView('showroom')" class="pop-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-bold bg-charcoal-900 text-white dark:bg-white dark:text-charcoal-900 shadow-sm flex items-center gap-1.5">
+          <span>New Cars</span>
+          <span id="navBadgeCount" class="px-1.5 py-0.2 rounded-full text-[11px] bg-white/20 dark:bg-stone-900/20">26</span>
+        </button>
+        <button id="navBtnCompare" onclick="switchMainView('compare')" class="pop-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white flex items-center gap-1.5">
+          <span>Compare Cars</span>
+          <span id="navCompareCount" class="px-1.5 py-0.2 rounded-full text-[11px] bg-crimson-100 dark:bg-crimson-800/40 text-crimson-700 dark:text-crimson-300 font-bold">3</span>
+        </button>
+        <button id="navBtnEmi" onclick="switchMainView('emi')" class="pop-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white">
+          <span>Loan & EMI Calculator</span>
+        </button>
+      </nav>
+
+      <!-- Top-Right Controls: Theme Switcher & Login / Sign Up (No Add Car Button) -->
+      <div class="flex items-center gap-2.5">
+        <button onclick="toggleColorTheme()" class="pop-btn px-3 py-2.5 rounded-xl bg-stone-100 dark:bg-charcoal-800 text-stone-700 dark:text-stone-200 border border-stone-200 dark:border-stone-700 text-xs font-semibold" title="Switch Light / Dark Appearance">
+          <span id="themeToggleIcon">☾ Dark</span>
+        </button>
+
+        <button id="topRightAuthBtn" onclick="openAuthPage(false)" class="pop-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-crimson-700 hover:bg-crimson-800 text-white shadow-sm flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+          </svg>
+          <span id="topRightAuthText">Login / Sign Up</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- VIEW 1: MAIN SHOWROOM (OPENS DIRECTLY INTO CLEAN FILTER & GRID)       -->
+  <!-- ===================================================================== -->
+  <main id="viewShowroom" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-5 space-y-5">
+
+    <!-- Filter & Search Bar -->
+    <section id="inventorySection" class="bg-white dark:bg-charcoal-800 border border-stone-200/90 dark:border-stone-700/80 rounded-2xl p-4 sm:p-5 space-y-4 shadow-sm">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-stone-100 dark:border-stone-700/70 pb-3.5">
+        <div>
+          <h1 class="text-xl sm:text-2xl font-extrabold text-stone-900 dark:text-white tracking-tight">New Cars in India — 2025/26 Showroom Lineup</h1>
+          <p class="text-xs text-stone-500 dark:text-stone-400">Showing verified Ex-Showroom & estimated On-Road prices in <strong id="headerCityLabel" class="text-stone-800 dark:text-stone-200">Udupi / Mangaluru</strong> across 26 models.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="setCategoryFilter('Luxury')" class="pop-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-amber-500/15 text-amber-900 dark:text-amber-300 border border-amber-500/30">
+            ✦ Luxury Collection (8 Cars)
+          </button>
+          <button onclick="switchMainView('compare')" class="pop-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-charcoal-900 text-white dark:bg-white dark:text-charcoal-900">
+            Compare Selected (<span id="heroCompareBadge">3</span>)
+          </button>
+        </div>
+      </div>
+
+      <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
+        <!-- Search Input -->
+        <div class="relative flex-1">
+          <svg class="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/>
+          </svg>
+          <input
+            id="searchInput"
+            type="text"
+            oninput="handleFilterChange()"
+            placeholder="Search by brand, model, or fuel type (e.g. Mercedes, Defender, BMW, Audi, Creta, Swift, Nexon, Fortuner, Hybrid)..."
+            class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 text-sm text-stone-900 dark:text-white placeholder-stone-400 focus:outline-none focus:border-crimson-600"
+          />
+        </div>
+
+        <!-- Budget Slider & Sort -->
+        <div class="flex flex-wrap items-center gap-2.5">
+          <div class="flex items-center gap-2.5 bg-stone-50 dark:bg-charcoal-900 px-3.5 py-2 rounded-xl border border-stone-200 dark:border-stone-700">
+            <label for="priceRangeFilter" class="text-xs font-medium text-stone-500">Max Budget:</label>
+            <input
+              id="priceRangeFilter"
+              type="range"
+              min="800000"
+              max="20000000"
+              step="200000"
+              value="20000000"
+              oninput="handleFilterChange()"
+              class="w-28 cursor-pointer"
+            />
+            <span id="priceRangeLabel" class="text-xs font-bold text-crimson-700 dark:text-crimson-400 min-w-[76px] text-right">₹2.00 Cr</span>
+          </div>
+
+          <select
+            id="sortSelect"
+            onchange="handleFilterChange()"
+            aria-label="Sort Indian vehicles"
+            class="bg-stone-50 dark:bg-charcoal-900 text-xs font-semibold text-stone-800 dark:text-stone-200 px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-700 focus:outline-none"
+          >
+            <option value="featured">Sort: Popularity</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low (Luxury First)</option>
+            <option value="mileage-desc">Mileage / Range: Highest</option>
+            <option value="hp-desc">Horsepower (BHP): Highest</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Segment Filter Pills -->
+      <div class="flex items-center gap-1.5 flex-wrap pt-2 border-t border-stone-100 dark:border-stone-700/70">
+        <button onclick="setCategoryFilter('ALL')" data-cat="ALL" class="cat-pill pop-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-crimson-700 text-white">All Cars (26)</button>
+        <button onclick="setCategoryFilter('Luxury')" data-cat="Luxury" class="cat-pill pop-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-amber-500/10 text-amber-900 dark:text-amber-300 border border-amber-500/25">Luxury Cars (8)</button>
+        <button onclick="setCategoryFilter('Hatchback')" data-cat="Hatchback" class="cat-pill pop-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-stone-100 dark:bg-charcoal-900 text-stone-700 dark:text-stone-300">Hatchbacks</button>
+        <button onclick="setCategoryFilter('Compact SUV')" data-cat="Compact SUV" class="cat-pill pop-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-stone-100 dark:bg-charcoal-900 text-stone-700 dark:text-stone-300">Compact SUVs</button>
+        <button onclick="setCategoryFilter('Mid-Size SUV')" data-cat="Mid-Size SUV" class="cat-pill pop-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-stone-100 dark:bg-charcoal-900 text-stone-700 dark:text-stone-300">Mid-Size SUVs</button>
+        <button onclick="setCategoryFilter('Sedan')" data-cat="Sedan" class="cat-pill pop-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-stone-100 dark:bg-charcoal-900 text-stone-700 dark:text-stone-300">Sedans</button>
+        <button onclick="setCategoryFilter('Electric EV')" data-cat="Electric EV" class="cat-pill pop-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-stone-100 dark:bg-charcoal-900 text-emerald-700 dark:text-emerald-400">Electric EVs</button>
+        <button onclick="setCategoryFilter('Full-Size & 4x4 SUV')" data-cat="Full-Size & 4x4 SUV" class="cat-pill pop-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-stone-100 dark:bg-charcoal-900 text-stone-700 dark:text-stone-300">Full-Size & 4x4 SUVs</button>
+        <button onclick="setCategoryFilter('MPV & Hybrid')" data-cat="MPV & Hybrid" class="cat-pill pop-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-stone-100 dark:bg-charcoal-900 text-stone-700 dark:text-stone-300">MPV & Hybrid</button>
+      </div>
+    </section>
+
+    <!-- FLOATING SPEC COMPARE BAR -->
+    <div id="compareFloatingBar" class="bg-charcoal-900 text-white rounded-2xl p-3 sm:px-5 flex flex-wrap items-center justify-between gap-3 shadow-lg">
+      <div class="flex items-center gap-3 flex-wrap">
+        <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold uppercase tracking-wider bg-crimson-700 text-white">Compare Shortlist</span>
+        <div id="compareTrayPills" class="flex items-center gap-2 flex-wrap text-xs"></div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="clearComparisonList()" class="pop-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-charcoal-800 text-stone-300 hover:text-white">
+          Clear
+        </button>
+        <button onclick="switchMainView('compare')" class="pop-btn px-4 py-1.5 rounded-xl text-xs font-bold bg-white text-charcoal-900 shadow-sm">
+          Compare Specifications →
+        </button>
+      </div>
+    </div>
+
+    <!-- 26-CAR INVENTORY GRID -->
+    <section>
+      <div id="vehiclesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- VIEW 2: SPECIFICATION-FIRST COMPARISON VIEW (PRICE BELOW)             -->
+  <!-- ===================================================================== -->
+  <section id="viewCompare" class="hidden flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
+    <div class="flex flex-wrap items-center justify-between gap-4 bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-2xl p-5 shadow-sm">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-stone-900 dark:text-white">Compare Cars by Technical Specifications</h2>
+        <p class="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-0.5">Side-by-side comparison of Engine, Power, Mileage, Ground Clearance, and Safety, followed by Ex-Showroom & On-Road pricing below.</p>
+      </div>
+      <button onclick="switchMainView('showroom')" class="pop-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-stone-100 dark:bg-charcoal-900 text-stone-800 dark:text-stone-200">
+        ← Back to Showroom
+      </button>
+    </div>
+
+    <!-- Quick Toggle Car Pills for Comparison -->
+    <div class="bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-2xl p-4 space-y-2 shadow-sm">
+      <div class="text-xs font-bold uppercase tracking-wider text-stone-400">Add or Swap Cars in Comparison (Up to 4):</div>
+      <div id="compareQuickSelector" class="flex flex-wrap items-center gap-1.5"></div>
+    </div>
+
+    <!-- Main Spec-First Comparison Table -->
+    <div id="compareTableContainer" class="bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-2xl overflow-x-auto shadow-sm"></div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- VIEW 3: STANDALONE CAR LOAN & EMI CALCULATOR                          -->
+  <!-- ===================================================================== -->
+  <section id="viewEmi" class="hidden flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
+    <div class="flex flex-wrap items-center justify-between gap-4 bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-2xl p-5 shadow-sm">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-stone-900 dark:text-white">Car Loan & EMI Calculator</h2>
+        <p class="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-0.5">Calculate monthly car loan installments across SBI, HDFC Bank, ICICI Bank, and Axis Bank with full annual repayment schedule.</p>
+      </div>
+      <button onclick="switchMainView('showroom')" class="pop-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-stone-100 dark:bg-charcoal-900 text-stone-800 dark:text-stone-200">
+        ← Back to Showroom
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <!-- Left 7 Cols: Loan Sliders -->
+      <div class="lg:col-span-7 bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-2xl p-5 sm:p-6 space-y-5 shadow-sm">
+        <div>
+          <label for="emiVehicleSelect" class="block text-xs font-bold uppercase tracking-wider text-stone-500 mb-2">Select Showroom Model</label>
+          <select
+            id="emiVehicleSelect"
+            onchange="handleEmiVehicleChange()"
+            class="w-full bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3 text-sm font-bold text-stone-900 dark:text-white focus:outline-none"
+          ></select>
+        </div>
+
+        <!-- Indian Bank Preset Pills -->
+        <div class="space-y-1.5">
+          <span class="block text-xs font-bold uppercase tracking-wider text-stone-500">Partner Bank Interest Rates</span>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <button onclick="setBankRate(8.75)" class="pop-btn py-2 px-2.5 rounded-xl text-xs font-semibold bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 text-stone-800 dark:text-stone-200 hover:border-crimson-600">SBI • 8.75%</button>
+            <button onclick="setBankRate(8.95)" class="pop-btn py-2 px-2.5 rounded-xl text-xs font-semibold bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 text-stone-800 dark:text-stone-200 hover:border-crimson-600">HDFC • 8.95%</button>
+            <button onclick="setBankRate(9.10)" class="pop-btn py-2 px-2.5 rounded-xl text-xs font-semibold bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 text-stone-800 dark:text-stone-200 hover:border-crimson-600">ICICI • 9.10%</button>
+            <button onclick="setBankRate(9.25)" class="pop-btn py-2 px-2.5 rounded-xl text-xs font-semibold bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 text-stone-800 dark:text-stone-200 hover:border-crimson-600">Axis • 9.25%</button>
+          </div>
+        </div>
+
+        <!-- Vehicle Ex-Showroom Price Slider -->
+        <div class="space-y-1.5">
+          <div class="flex justify-between text-xs sm:text-sm">
+            <label for="emiPriceInput" class="font-semibold text-stone-700 dark:text-stone-300">Vehicle Ex-Showroom Price</label>
+            <span id="emiPriceDisplay" class="font-extrabold text-stone-900 dark:text-white text-base">₹18.70 Lakh</span>
+          </div>
+          <input
+            id="emiPriceInput"
+            type="range"
+            min="500000"
+            max="18000000"
+            step="50000"
+            value="1870000"
+            oninput="recalculateEmi()"
+            class="w-full cursor-pointer"
+          />
+          <div class="flex justify-between text-[11px] text-stone-400">
+            <span>₹5.00 Lakh</span>
+            <span>₹90.00 Lakh</span>
+            <span>₹1.80 Cr</span>
+          </div>
+        </div>
+
+        <!-- Down Payment Slider -->
+        <div class="space-y-1.5">
+          <div class="flex justify-between text-xs sm:text-sm">
+            <label for="emiDownPaymentInput" class="font-semibold text-stone-700 dark:text-stone-300">Down Payment (<span id="emiDownPctLabel" class="text-crimson-700 dark:text-crimson-400 font-bold">20%</span>)</label>
+            <span id="emiDownPaymentDisplay" class="font-bold text-stone-900 dark:text-white text-base">₹3,74,000</span>
+          </div>
+          <input
+            id="emiDownPaymentInput"
+            type="range"
+            min="0"
+            max="80"
+            step="5"
+            value="20"
+            oninput="recalculateEmi()"
+            class="w-full cursor-pointer"
+          />
+        </div>
+
+        <!-- Annual Interest Rate Slider -->
+        <div class="space-y-1.5">
+          <div class="flex justify-between text-xs sm:text-sm">
+            <label for="emiRateInput" class="font-semibold text-stone-700 dark:text-stone-300">Annual Interest Rate (% p.a.)</label>
+            <span id="emiRateDisplay" class="font-bold text-amber-700 dark:text-amber-400 text-base">8.75%</span>
+          </div>
+          <input
+            id="emiRateInput"
+            type="range"
+            min="7.0"
+            max="15.0"
+            step="0.05"
+            value="8.75"
+            oninput="recalculateEmi()"
+            class="w-full cursor-pointer"
+          />
+        </div>
+
+        <!-- Loan Tenure Slider -->
+        <div class="space-y-1.5">
+          <div class="flex justify-between text-xs sm:text-sm">
+            <label for="emiTenureInput" class="font-semibold text-stone-700 dark:text-stone-300">Loan Tenure (Months)</label>
+            <span id="emiTenureDisplay" class="font-bold text-stone-900 dark:text-white text-base">60 Months (5 Yrs)</span>
+          </div>
+          <input
+            id="emiTenureInput"
+            type="range"
+            min="12"
+            max="84"
+            step="12"
+            value="60"
+            oninput="recalculateEmi()"
+            class="w-full cursor-pointer"
+          />
+        </div>
+      </div>
+
+      <!-- Right 5 Cols: Monthly EMI Breakdown Card -->
+      <div class="lg:col-span-5 bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-2xl p-5 sm:p-6 flex flex-col justify-between space-y-5 shadow-sm">
+        <div class="space-y-4">
+          <div class="bg-charcoal-900 text-white rounded-2xl p-5 text-center">
+            <span class="text-[11px] font-bold uppercase tracking-widest text-amber-400">ESTIMATED MONTHLY EMI</span>
+            <div id="emiMonthlyResult" class="text-3xl sm:text-4xl font-extrabold mt-1">₹30,890 / mo</div>
+            <p id="emiSelectedCarCaption" class="text-xs text-stone-300 mt-1">Calculated for Hyundai Creta SX(O) Turbo</p>
+          </div>
+
+          <!-- Principal vs Interest Bar -->
+          <div class="space-y-2">
+            <div class="flex justify-between text-xs font-bold">
+              <span class="text-emerald-700 dark:text-emerald-400">Loan Principal (<span id="emiPrincipalPct">81%</span>)</span>
+              <span class="text-amber-700 dark:text-amber-400">Total Interest (<span id="emiInterestPct">19%</span>)</span>
+            </div>
+            <div class="w-full h-3 rounded-full bg-stone-100 dark:bg-charcoal-900 overflow-hidden flex">
+              <div id="emiBarPrincipal" class="bg-emerald-600 h-full transition-all duration-300" style="width: 81%"></div>
+              <div id="emiBarInterest" class="bg-amber-500 h-full transition-all duration-300" style="width: 19%"></div>
+            </div>
+          </div>
+
+          <!-- Summary Figures -->
+          <div class="grid grid-cols-2 gap-3 text-xs">
+            <div class="bg-stone-50 dark:bg-charcoal-900 p-3.5 rounded-xl border border-stone-200/80 dark:border-stone-700">
+              <span class="text-stone-500 block">Loan Principal</span>
+              <span id="emiLoanPrincipalVal" class="font-extrabold text-stone-900 dark:text-white text-sm sm:text-base mt-0.5 block">₹14,96,000</span>
+            </div>
+            <div class="bg-stone-50 dark:bg-charcoal-900 p-3.5 rounded-xl border border-stone-200/80 dark:border-stone-700">
+              <span class="text-stone-500 block">Total Interest Payable</span>
+              <span id="emiTotalInterestVal" class="font-extrabold text-amber-700 dark:text-amber-400 text-sm sm:text-base mt-0.5 block">₹3,57,400</span>
+            </div>
+            <div class="bg-stone-50 dark:bg-charcoal-900 p-3.5 rounded-xl border border-stone-200/80 dark:border-stone-700">
+              <span class="text-stone-500 block">Down Payment</span>
+              <span id="emiDownValCard" class="font-extrabold text-emerald-700 dark:text-emerald-400 text-sm sm:text-base mt-0.5 block">₹3,74,000</span>
+            </div>
+            <div class="bg-stone-50 dark:bg-charcoal-900 p-3.5 rounded-xl border border-stone-200/80 dark:border-stone-700">
+              <span class="text-stone-500 block">Total Amount Payable</span>
+              <span id="emiTotalPayableVal" class="font-extrabold text-stone-900 dark:text-white text-sm sm:text-base mt-0.5 block">₹22,27,400</span>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="proceedFromEmiToPayment()" class="pop-btn w-full py-3.5 rounded-xl font-bold text-sm bg-crimson-700 hover:bg-crimson-800 text-white shadow-md">
+          Book with This Loan & EMI Plan →
+        </button>
+      </div>
+    </div>
+
+    <!-- Amortization Table -->
+    <div class="bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-2xl p-5 space-y-3 shadow-sm">
+      <h3 class="text-sm font-bold uppercase tracking-wider text-stone-500">Year-by-Year Repayment Schedule (₹)</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="border-b border-stone-200 dark:border-stone-700 text-stone-500 text-xs">
+              <th class="py-2.5 px-3">Year</th>
+              <th class="py-2.5 px-3 text-right">Opening Balance</th>
+              <th class="py-2.5 px-3 text-right">Annual EMI Paid</th>
+              <th class="py-2.5 px-3 text-right text-emerald-700 dark:text-emerald-400">Principal Paid</th>
+              <th class="py-2.5 px-3 text-right text-amber-700 dark:text-amber-400">Interest Paid</th>
+              <th class="py-2.5 px-3 text-right">Closing Balance</th>
+            </tr>
+          </thead>
+          <tbody id="emiScheduleBody" class="divide-y divide-stone-100 dark:divide-stone-800/60"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- VIEW 4: UNIFIED INDIAN VEHICLE BOOKING, LOAN/EMI & PAYMENT PAGE       -->
+  <!-- ===================================================================== -->
+  <section id="viewPayment" class="hidden flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
+    <!-- Top Header -->
+    <div class="bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-2xl p-5 flex flex-wrap items-center justify-between gap-4 shadow-sm">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/15 text-emerald-800 dark:text-emerald-300">VERIFIED BUYER SESSION</span>
+          <span id="checkoutLoggedUserBadge" class="text-xs font-semibold text-stone-500">Signed in</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-stone-900 dark:text-white mt-1">Vehicle Booking, Loan & Payment Checkout</h2>
+      </div>
+      <button onclick="switchMainView('showroom')" class="pop-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-stone-100 dark:bg-charcoal-900 text-stone-700 dark:text-stone-200">
+        ← Back to Showroom
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <!-- Left 7 Cols: Complete Checkout (1. Financing & Loan/EMI, 2. Buyer KYC, 3. Payment Instrument) -->
+      <div class="lg:col-span-7 space-y-6">
+
+        <!-- ACTIVE CHECKOUT FORM WRAPPER -->
+        <div id="activeCheckoutFormWrapper" class="space-y-6">
+
+          <!-- SECTION 1: CHOOSE PURCHASE PLAN & INTERACTIVE LOAN / EMI CONFIGURATOR -->
+          <div class="bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-2xl p-5 sm:p-6 space-y-5 shadow-sm">
+            <div class="flex items-center justify-between">
+              <h3 class="text-base sm:text-lg font-extrabold text-stone-900 dark:text-white">1. Select Purchase Plan (Full Payment vs. Car Loan & EMI)</h3>
+              <span class="text-[11px] font-bold text-crimson-700 dark:text-crimson-400 uppercase">Instant Bank Sanction</span>
+            </div>
+
+            <!-- Plan Toggle Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button id="payPlanEmiBtn" type="button" onclick="selectPaymentPlan('emi')" class="pop-btn p-4 rounded-xl border-2 border-crimson-700 bg-crimson-50/40 dark:bg-crimson-900/10 text-left">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold uppercase text-crimson-700 dark:text-crimson-400">CAR LOAN & EMI FINANCING</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-crimson-700 text-white">POPULAR</span>
+                </div>
+                <div class="text-sm font-extrabold text-stone-900 dark:text-white mt-1">Pay Down Payment + Monthly EMI</div>
+                <div class="text-[11px] text-stone-500 mt-0.5">Customize bank, down payment % & tenure below</div>
+              </button>
+
+              <button id="payPlanFullBtn" type="button" onclick="selectPaymentPlan('full')" class="pop-btn p-4 rounded-xl border border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-charcoal-900 text-left">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold uppercase text-emerald-700 dark:text-emerald-400">FULL ON-ROAD SETTLEMENT</span>
+                </div>
+                <div class="text-sm font-extrabold text-stone-900 dark:text-white mt-1">100% Outright Payment</div>
+                <div class="text-[11px] text-stone-500 mt-0.5">Zero bank hypothecation on RC • Direct invoice</div>
+              </button>
+            </div>
+
+            <!-- DEDICATED INTERACTIVE LOAN & EMI SECTION ON PAYMENT PAGE -->
+            <div id="checkoutLoanEmiSection" class="bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 rounded-2xl p-4 sm:p-5 space-y-4">
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-stone-200 dark:border-stone-700 pb-3">
+                <div>
+                  <span class="text-[11px] font-bold uppercase tracking-wider text-crimson-700 dark:text-crimson-400">AUTO LOAN & EMI CONFIGURATOR</span>
+                  <h4 class="text-sm sm:text-base font-extrabold text-stone-900 dark:text-white">Customize Your Bank Loan & Monthly EMI</h4>
+                </div>
+                <span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-500/15 text-emerald-800 dark:text-emerald-300">✓ Zero Processing Fee</span>
+              </div>
+
+              <!-- Partner Bank Selector on Payment Page -->
+              <div class="space-y-1.5">
+                <label class="block text-xs font-bold text-stone-600 dark:text-stone-300">Select Lending Bank Partner</label>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  <button type="button" onclick="setCheckoutLoanBank('SBI Car Loan', 8.75)" class="chk-bank-btn pop-btn p-2.5 rounded-xl bg-white dark:bg-charcoal-800 border-2 border-crimson-700 text-left">
+                    <div class="text-xs font-extrabold text-stone-900 dark:text-white">SBI Auto</div>
+                    <div class="text-[11px] text-emerald-700 dark:text-emerald-400 font-bold">8.75% p.a.</div>
+                  </button>
+                  <button type="button" onclick="setCheckoutLoanBank('HDFC Xpress Car Loan', 8.95)" class="chk-bank-btn pop-btn p-2.5 rounded-xl bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 text-left">
+                    <div class="text-xs font-extrabold text-stone-900 dark:text-white">HDFC Bank</div>
+                    <div class="text-[11px] text-stone-500 font-bold">8.95% p.a.</div>
+                  </button>
+                  <button type="button" onclick="setCheckoutLoanBank('ICICI Auto Finance', 9.10)" class="chk-bank-btn pop-btn p-2.5 rounded-xl bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 text-left">
+                    <div class="text-xs font-extrabold text-stone-900 dark:text-white">ICICI Bank</div>
+                    <div class="text-[11px] text-stone-500 font-bold">9.10% p.a.</div>
+                  </button>
+                  <button type="button" onclick="setCheckoutLoanBank('Axis Prime Car Loan', 9.25)" class="chk-bank-btn pop-btn p-2.5 rounded-xl bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 text-left">
+                    <div class="text-xs font-extrabold text-stone-900 dark:text-white">Axis Bank</div>
+                    <div class="text-[11px] text-stone-500 font-bold">9.25% p.a.</div>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Down Payment % & Tenure Sliders inside Payment Page -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                <div class="space-y-1.5">
+                  <div class="flex justify-between text-xs">
+                    <label for="chkDownPctInput" class="font-semibold text-stone-600 dark:text-stone-300">Down Payment (<span id="chkDownPctLabel" class="font-bold text-crimson-700 dark:text-crimson-400">20%</span>)</label>
+                    <span id="chkDownAmtLabel" class="font-bold text-stone-900 dark:text-white">₹3,74,000</span>
+                  </div>
+                  <input id="chkDownPctInput" type="range" min="10" max="75" step="5" value="20" oninput="updatePaymentSummaryCard()" class="w-full cursor-pointer" />
+                </div>
+
+                <div class="space-y-1.5">
+                  <div class="flex justify-between text-xs">
+                    <label for="chkTenureInput" class="font-semibold text-stone-600 dark:text-stone-300">Loan Tenure</label>
+                    <span id="chkTenureLabel" class="font-bold text-stone-900 dark:text-white">60 Months (5 Yrs)</span>
+                  </div>
+                  <input id="chkTenureInput" type="range" min="12" max="84" step="12" value="60" oninput="updatePaymentSummaryCard()" class="w-full cursor-pointer" />
+                </div>
+              </div>
+
+              <!-- Live Loan & EMI Summary Strip on Payment Page -->
+              <div class="grid grid-cols-3 gap-2.5 pt-2">
+                <div class="bg-white dark:bg-charcoal-800 p-3 rounded-xl border border-stone-200 dark:border-stone-700">
+                  <span class="text-[10px] uppercase font-bold text-stone-400 block">SANCTIONED LOAN</span>
+                  <span id="chkSanctionedLoanVal" class="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-white mt-0.5 block">₹14,96,000</span>
+                </div>
+                <div class="bg-white dark:bg-charcoal-800 p-3 rounded-xl border border-stone-200 dark:border-stone-700">
+                  <span class="text-[10px] uppercase font-bold text-crimson-700 dark:text-crimson-400 block">MONTHLY EMI</span>
+                  <span id="chkMonthlyEmiVal" class="text-xs sm:text-sm font-extrabold text-crimson-700 dark:text-crimson-400 mt-0.5 block">₹30,890 / mo</span>
+                </div>
+                <div class="bg-white dark:bg-charcoal-800 p-3 rounded-xl border border-stone-200 dark:border-stone-700">
+                  <span class="text-[10px] uppercase font-bold text-stone-400 block">TOTAL INTEREST</span>
+                  <span id="chkTotalInterestVal" class="text-xs sm:text-sm font-bold text-stone-700 dark:text-stone-200 mt-0.5 block">₹3,57,400</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 2: BUYER KYC & RTO REGISTRATION DETAILS -->
+          <div class="bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-2xl p-5 sm:p-6 space-y-4 shadow-sm">
+            <h3 class="text-base sm:text-lg font-extrabold text-stone-900 dark:text-white">2. Buyer KYC & RTO Registration Details</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="payBuyerName" class="block text-xs font-semibold text-stone-500 mb-1">Full Name (as per PAN / Aadhaar) *</label>
+                <input id="payBuyerName" type="text" value="Karthik Shetty" class="w-full bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 rounded-xl px-3.5 py-2.5 text-sm text-stone-900 dark:text-white" />
+              </div>
+              <div>
+                <label for="payBuyerEmail" class="block text-xs font-semibold text-stone-500 mb-1">Email Address *</label>
+                <input id="payBuyerEmail" type="email" value="karthik.shetty@auradrive.in" class="w-full bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 rounded-xl px-3.5 py-2.5 text-sm text-stone-900 dark:text-white" />
+              </div>
+              <div>
+                <label for="payBuyerPhone" class="block text-xs font-semibold text-stone-500 mb-1">Mobile Number (+91) *</label>
+                <input id="payBuyerPhone" type="tel" value="+91 98450 67890" class="w-full bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 rounded-xl px-3.5 py-2.5 text-sm text-stone-900 dark:text-white" />
+              </div>
+              <div>
+                <label for="payPanInput" class="block text-xs font-semibold text-stone-500 mb-1">PAN Card Number (Mandatory) *</label>
+                <input id="payPanInput" type="text" value="ABCPS1234K" class="w-full bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 rounded-xl px-3.5 py-2.5 text-sm uppercase text-stone-900 dark:text-white" />
+              </div>
+              <div>
+                <label for="payDeliveryMode" class="block text-xs font-semibold text-stone-500 mb-1">Delivery Preference</label>
+                <select id="payDeliveryMode" onchange="updatePaymentSummaryCard()" class="w-full bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 rounded-xl px-3.5 py-2.5 text-sm text-stone-900 dark:text-white">
+                  <option value="showroom">Showroom Ceremonial Handover (Free)</option>
+                  <option value="enclosed">Flatbed Doorstep Home Delivery (+₹15,000)</option>
+                </select>
+              </div>
+              <div>
+                <label for="payRtoCodeInput" class="block text-xs font-semibold text-stone-500 mb-1">RTO Office Code</label>
+                <input id="payRtoCodeInput" type="text" value="KA-20 (Udupi) / KA-19 (Mangaluru)" class="w-full bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 rounded-xl px-3.5 py-2.5 text-sm text-stone-900 dark:text-white" />
+              </div>
+            </div>
+            <div>
+              <label for="payBuyerAddress" class="block text-xs font-semibold text-stone-500 mb-1">Permanent Registration Address</label>
+              <input id="payBuyerAddress" type="text" value="Manipal - Udupi Main Road, Udupi, Karnataka 576104" class="w-full bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 rounded-xl px-3.5 py-2.5 text-sm text-stone-900 dark:text-white" />
+            </div>
+          </div>
+
+          <!-- SECTION 3: MULTI-MODE PAYMENT GATEWAY (UPI APP REDIRECT, CARD, NETBANKING, RTGS) -->
+          <div class="bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-2xl p-5 sm:p-6 space-y-5 shadow-sm">
+            <h3 class="text-base sm:text-lg font-extrabold text-stone-900 dark:text-white">3. Choose Payment Mode</h3>
+
+            <!-- 4 Payment Method Tabs -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <button id="instUpiBtn" type="button" onclick="selectPaymentInstrument('upi')" class="pop-btn py-2.5 px-2.5 rounded-xl text-xs font-bold bg-crimson-700 text-white shadow-sm">
+                UPI App / QR
+              </button>
+              <button id="instCardBtn" type="button" onclick="selectPaymentInstrument('card')" class="pop-btn py-2.5 px-2.5 rounded-xl text-xs font-semibold bg-stone-100 dark:bg-charcoal-900 text-stone-700 dark:text-stone-300">
+                Credit / Debit Card
+              </button>
+              <button id="instNetbankingBtn" type="button" onclick="selectPaymentInstrument('netbanking')" class="pop-btn py-2.5 px-2.5 rounded-xl text-xs font-semibold bg-stone-100 dark:bg-charcoal-900 text-stone-700 dark:text-stone-300">
+                NetBanking
+              </button>
+              <button id="instWireBtn" type="button" onclick="selectPaymentInstrument('wire')" class="pop-btn py-2.5 px-2.5 rounded-xl text-xs font-semibold bg-stone-100 dark:bg-charcoal-900 text-stone-700 dark:text-stone-300">
+                RTGS / NEFT
+              </button>
+            </div>
+
+            <!-- PANEL A: UPI APP DEEP-LINK REDIRECT + DYNAMIC QR + VPA -->
+            <div id="paymentPanelUpi" class="bg-stone-50 dark:bg-charcoal-900 p-4 rounded-2xl border border-stone-200 dark:border-stone-700 space-y-4">
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-stone-200 dark:border-stone-700 pb-3">
+                <div>
+                  <div class="text-xs font-extrabold text-stone-900 dark:text-white">Direct UPI App Redirect (NPCI Deep-Link)</div>
+                  <div class="text-[11px] text-stone-500">Click any app below to launch it directly with the exact payable booking/down-payment amount.</div>
+                </div>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">INSTANT VERIFICATION</span>
+              </div>
+
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                <a
+                  id="upiLinkGpay"
+                  href="upi://pay?pa=auradrive.india@hdfcbank&pn=AuraDrive%20India&cu=INR"
+                  onclick="triggerUpiAppRedirect('Google Pay GPay')"
+                  class="pop-btn p-3 rounded-xl bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 hover:border-blue-600 flex flex-col items-center justify-center gap-1 text-center"
+                >
+                  <span class="w-8 h-8 rounded-full bg-blue-600 text-white font-black text-xs flex items-center justify-center">GPay</span>
+                  <span class="text-xs font-bold text-stone-900 dark:text-white">Google Pay</span>
+                  <span class="text-[10px] text-blue-600 dark:text-sky-400">Open App ↗</span>
+                </a>
+
+                <a
+                  id="upiLinkPhonepe"
+                  href="upi://pay?pa=auradrive.india@hdfcbank&pn=AuraDrive%20India&cu=INR"
+                  onclick="triggerUpiAppRedirect('PhonePe')"
+                  class="pop-btn p-3 rounded-xl bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 hover:border-purple-600 flex flex-col items-center justify-center gap-1 text-center"
+                >
+                  <span class="w-8 h-8 rounded-full bg-purple-600 text-white font-black text-xs flex items-center justify-center">Pe</span>
+                  <span class="text-xs font-bold text-stone-900 dark:text-white">PhonePe</span>
+                  <span class="text-[10px] text-purple-600 dark:text-purple-400">Open App ↗</span>
+                </a>
+
+                <a
+                  id="upiLinkPaytm"
+                  href="upi://pay?pa=auradrive.india@hdfcbank&pn=AuraDrive%20India&cu=INR"
+                  onclick="triggerUpiAppRedirect('Paytm UPI')"
+                  class="pop-btn p-3 rounded-xl bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 hover:border-sky-500 flex flex-col items-center justify-center gap-1 text-center"
+                >
+                  <span class="w-8 h-8 rounded-full bg-sky-500 text-white font-black text-xs flex items-center justify-center">Pay</span>
+                  <span class="text-xs font-bold text-stone-900 dark:text-white">Paytm UPI</span>
+                  <span class="text-[10px] text-sky-600 dark:text-sky-400">Open App ↗</span>
+                </a>
+
+                <a
+                  id="upiLinkBhim"
+                  href="upi://pay?pa=auradrive.india@hdfcbank&pn=AuraDrive%20India&cu=INR"
+                  onclick="triggerUpiAppRedirect('BHIM UPI')"
+                  class="pop-btn p-3 rounded-xl bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 hover:border-emerald-600 flex flex-col items-center justify-center gap-1 text-center"
+                >
+                  <span class="w-8 h-8 rounded-full bg-emerald-600 text-white font-black text-xs flex items-center justify-center">UPI</span>
+                  <span class="text-xs font-bold text-stone-900 dark:text-white">BHIM / Other</span>
+                  <span class="text-[10px] text-emerald-600 dark:text-emerald-400">Open App ↗</span>
+                </a>
+              </div>
+
+              <!-- QR Code + UPI ID (VPA) Verification Row -->
+              <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center pt-2 border-t border-stone-200/70 dark:border-stone-700">
+                <div class="sm:col-span-4 flex flex-col items-center bg-white dark:bg-charcoal-800 p-3 rounded-xl border border-stone-200 dark:border-stone-700">
+                  <div id="upiQrBox" class="w-24 h-24 flex items-center justify-center"></div>
+                  <span class="text-[10px] font-bold text-stone-500 mt-1">Scan w/ Any UPI App</span>
+                </div>
+                <div class="sm:col-span-8 space-y-2.5">
+                  <label for="upiVpaInput" class="block text-xs font-semibold text-stone-600 dark:text-stone-300">Or Enter Your UPI ID (VPA)</label>
+                  <div class="flex gap-2">
+                    <input id="upiVpaInput" type="text" value="karthik.shetty@okhdfcbank" placeholder="yourname@okhdfcbank" class="flex-1 bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2 text-sm text-stone-900 dark:text-white" />
+                    <button type="button" onclick="verifyUpiVpa()" class="pop-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-charcoal-900 text-white dark:bg-white dark:text-charcoal-900">
+                      Verify VPA
+                    </button>
+                  </div>
+                  <div id="upiVpaStatus" class="text-[11px] font-semibold text-emerald-700 dark:text-emerald-400">
+                    ✓ Verified Account Holder: KARTHIK SHETTY (HDFC Bank UPI)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PANEL B: CREDIT / DEBIT CARD -->
+            <div id="paymentPanelCard" class="hidden bg-stone-50 dark:bg-charcoal-900 p-4 rounded-2xl border border-stone-200 dark:border-stone-700 space-y-4">
+              <div class="bg-gradient-to-r from-charcoal-900 via-stone-800 to-crimson-800 text-white rounded-2xl p-4 shadow-md space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold uppercase tracking-widest text-stone-300">AURADRIVE SECURE CARD</span>
+                  <span id="cardNetworkBadge" class="px-2 py-0.5 rounded bg-white/15 text-xs font-extrabold">VISA / RUPAY</span>
+                </div>
+                <div id="cardPreviewNumber" class="text-base sm:text-lg font-mono tracking-widest font-bold">4532 •••• •••• 8891</div>
+                <div class="flex items-center justify-between text-xs">
+                  <div>
+                    <span class="text-[10px] text-stone-400 block">CARDHOLDER NAME</span>
+                    <span id="cardPreviewHolder" class="font-bold uppercase">KARTHIK SHETTY</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-[10px] text-stone-400 block">VALID THRU</span>
+                    <span id="cardPreviewExpiry" class="font-bold">08/29</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="sm:col-span-2">
+                  <label for="cardNumInput" class="block text-xs font-semibold text-stone-500 mb-1">16-Digit Card Number *</label>
+                  <input id="cardNumInput" type="text" maxlength="19" value="4532 7810 9921 8891" oninput="syncCardPreview()" class="w-full bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-stone-900 dark:text-white" />
+                </div>
+                <div>
+                  <label for="cardHolderInput" class="block text-xs font-semibold text-stone-500 mb-1">Cardholder Name *</label>
+                  <input id="cardHolderInput" type="text" value="Karthik Shetty" oninput="syncCardPreview()" class="w-full bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3.5 py-2.5 text-sm text-stone-900 dark:text-white" />
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label for="cardExpInput" class="block text-xs font-semibold text-stone-500 mb-1">Expiry (MM/YY) *</label>
+                    <input id="cardExpInput" type="text" maxlength="5" value="08/29" oninput="syncCardPreview()" class="w-full bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2.5 text-sm text-stone-900 dark:text-white" />
+                  </div>
+                  <div>
+                    <label for="cardCvvInput" class="block text-xs font-semibold text-stone-500 mb-1">3-Digit CVV *</label>
+                    <input id="cardCvvInput" type="password" maxlength="4" value="884" class="w-full bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2.5 text-sm text-stone-900 dark:text-white" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PANEL C: INDIAN NETBANKING -->
+            <div id="paymentPanelNetbanking" class="hidden bg-stone-50 dark:bg-charcoal-900 p-4 rounded-2xl border border-stone-200 dark:border-stone-700 space-y-4">
+              <div class="text-xs font-bold text-stone-700 dark:text-stone-200">Select Your Bank for Instant NetBanking Authorization</div>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                <button type="button" onclick="selectNetbankingBank('State Bank of India SBI')" class="netbank-btn pop-btn p-3 rounded-xl bg-white dark:bg-charcoal-800 border-2 border-crimson-700 text-left">
+                  <div class="text-xs font-extrabold text-stone-900 dark:text-white">SBI</div>
+                  <div class="text-[11px] text-stone-500">State Bank of India</div>
+                </button>
+                <button type="button" onclick="selectNetbankingBank('HDFC Bank NetBanking')" class="netbank-btn pop-btn p-3 rounded-xl bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 text-left">
+                  <div class="text-xs font-extrabold text-stone-900 dark:text-white">HDFC Bank</div>
+                  <div class="text-[11px] text-stone-500">Retail / Corporate</div>
+                </button>
+                <button type="button" onclick="selectNetbankingBank('ICICI Bank Infinity')" class="netbank-btn pop-btn p-3 rounded-xl bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 text-left">
+                  <div class="text-xs font-extrabold text-stone-900 dark:text-white">ICICI Bank</div>
+                  <div class="text-[11px] text-stone-500">iMobile / NetBanking</div>
+                </button>
+                <button type="button" onclick="selectNetbankingBank('Axis Bank NetBanking')" class="netbank-btn pop-btn p-3 rounded-xl bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 text-left">
+                  <div class="text-xs font-extrabold text-stone-900 dark:text-white">Axis Bank</div>
+                  <div class="text-[11px] text-stone-500">Burgundy / Priority</div>
+                </button>
+                <button type="button" onclick="selectNetbankingBank('Kotak Mahindra Bank')" class="netbank-btn pop-btn p-3 rounded-xl bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 text-left">
+                  <div class="text-xs font-extrabold text-stone-900 dark:text-white">Kotak Bank</div>
+                  <div class="text-[11px] text-stone-500">CRN NetBanking</div>
+                </button>
+                <button type="button" onclick="selectNetbankingBank('Canara Bank NetBanking')" class="netbank-btn pop-btn p-3 rounded-xl bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 text-left">
+                  <div class="text-xs font-extrabold text-stone-900 dark:text-white">Canara Bank</div>
+                  <div class="text-[11px] text-stone-500">Coastal Karnataka</div>
+                </button>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                <div>
+                  <label for="netbankingBankName" class="block text-xs font-semibold text-stone-500 mb-1">Selected Bank Portal</label>
+                  <input id="netbankingBankName" type="text" readonly value="State Bank of India SBI" class="w-full bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2 text-xs font-bold text-crimson-700 dark:text-crimson-400" />
+                </div>
+                <div>
+                  <label for="netbankingUserId" class="block text-xs font-semibold text-stone-500 mb-1">Customer ID / User ID *</label>
+                  <input id="netbankingUserId" type="text" value="SBI-CRN-8849201" class="w-full bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2 text-xs text-stone-900 dark:text-white" />
+                </div>
+              </div>
+            </div>
+
+            <!-- PANEL D: RTGS / NEFT ESCROW TRANSFER -->
+            <div id="paymentPanelWire" class="hidden bg-stone-50 dark:bg-charcoal-900 p-4 rounded-2xl border border-stone-200 dark:border-stone-700 space-y-4">
+              <div class="flex items-center justify-between border-b border-stone-200 dark:border-stone-700 pb-2.5">
+                <div>
+                  <div class="text-xs font-extrabold text-stone-900 dark:text-white">RTGS / NEFT Dealership Escrow Account</div>
+                  <div class="text-[11px] text-stone-500">Recommended for high-value vehicle settlements above ₹5.00 Lakh.</div>
+                </div>
+                <button type="button" onclick="copyEscrowDetails()" class="pop-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-charcoal-900 text-white dark:bg-white dark:text-charcoal-900">
+                  Copy Account & IFSC
+                </button>
+              </div>
+              <div class="grid grid-cols-2 gap-2.5 text-xs bg-white dark:bg-charcoal-800 p-3.5 rounded-xl border border-stone-200 dark:border-stone-700">
+                <div><span class="text-stone-400 block text-[10px]">BENEFICIARY NAME</span><strong class="text-stone-900 dark:text-white">AuraDrive India Auto Escrow Ltd</strong></div>
+                <div><span class="text-stone-400 block text-[10px]">ESCROW BANK & BRANCH</span><strong class="text-stone-900 dark:text-white">HDFC Bank — MG Road, Bengaluru</strong></div>
+                <div><span class="text-stone-400 block text-[10px]">VIRTUAL ESCROW A/C NO.</span><strong class="font-mono text-crimson-700 dark:text-crimson-400">50200088491022</strong></div>
+                <div><span class="text-stone-400 block text-[10px]">RTGS / NEFT IFSC CODE</span><strong class="font-mono text-emerald-700 dark:text-emerald-400">HDFC0000240</strong></div>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label for="rtgsRemitterBank" class="block text-xs font-semibold text-stone-500 mb-1">Your Remitting Bank *</label>
+                  <input id="rtgsRemitterBank" type="text" value="HDFC Bank / SBI" class="w-full bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2 text-xs text-stone-900 dark:text-white" />
+                </div>
+                <div>
+                  <label for="rtgsUtrInput" class="block text-xs font-semibold text-stone-500 mb-1">UTR / RTGS Reference No. *</label>
+                  <input id="rtgsUtrInput" type="text" value="HDFCR520261025994812" class="w-full bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2 text-xs font-mono text-stone-900 dark:text-white" />
+                </div>
+              </div>
+            </div>
+
+            <button id="confirmPaymentFinalBtn" type="button" onclick="completeVehiclePurchase()" class="pop-btn w-full py-4 rounded-xl font-extrabold text-sm bg-crimson-700 hover:bg-crimson-800 text-white shadow-lg">
+              Authorize Payment & Confirm Vehicle Booking →
+            </button>
+          </div>
+        </div>
+
+        <!-- CONFIRMED DIGITAL BOOKING RECEIPT PANEL -->
+        <div id="paymentReceiptPanel" class="hidden bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-2xl p-6 space-y-5 text-center shadow-sm">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 mx-auto flex items-center justify-center text-2xl font-black">
+            ✓
+          </div>
+          <div class="space-y-1">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-800 dark:text-emerald-300">ALLOTMENT CONFIRMED • TAX INVOICE ISSUED</span>
+            <h3 id="receiptHeading" class="text-2xl font-extrabold text-stone-900 dark:text-white mt-2">Congratulations on Your New Car!</h3>
+            <p id="receiptSubtext" class="text-xs sm:text-sm text-stone-500">Your vehicle booking and financing structure have been registered.</p>
+          </div>
+          <div id="receiptDetailsBox" class="bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 rounded-2xl p-4 text-left text-xs space-y-2 max-w-lg mx-auto"></div>
+          <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+            <button onclick="switchMainView('showroom')" class="pop-btn px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-charcoal-900 text-white dark:bg-white dark:text-charcoal-900">
+              Return to Showroom
+            </button>
+            <button onclick="switchMainView('emi')" class="pop-btn px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm bg-stone-100 dark:bg-charcoal-900 text-stone-700 dark:text-stone-300">
+              View Full Repayment Schedule
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right 5 Cols: Sticky On-Road Price & Loan Breakdown Summary Card -->
+      <div class="lg:col-span-5 bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-2xl p-5 space-y-4 shadow-sm h-fit lg:sticky lg:top-24">
+        <div class="flex items-center justify-between border-b border-stone-100 dark:border-stone-700 pb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-stone-500">VEHICLE ORDER & ON-ROAD BREAKDOWN</span>
+          <span id="paySummaryStockBadge" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/15 text-emerald-800 dark:text-emerald-300">IN STOCK</span>
+        </div>
+        <div id="paySummaryVisual" class="studio-pod rounded-xl overflow-hidden border border-stone-200/70 dark:border-stone-700 h-44 flex items-center justify-center relative"></div>
+        <div>
+          <div id="paySummaryCategory" class="text-xs font-bold text-crimson-700 dark:text-crimson-400 uppercase">MID-SIZE SUV</div>
+          <h4 id="paySummaryTitle" class="text-xl font-extrabold text-stone-900 dark:text-white">Hyundai Creta SX(O) Turbo</h4>
+          <p id="paySummarySpecs" class="text-xs text-stone-500 mt-0.5">1.5L Turbo GDi • 158 BHP • 7-Speed DCT</p>
+        </div>
+
+        <div class="border-t border-stone-100 dark:border-stone-700 pt-3 space-y-2 text-xs">
+          <div class="flex justify-between text-stone-600 dark:text-stone-300">
+            <span>Ex-Showroom Price:</span>
+            <span id="paySumBasePrice" class="font-bold text-stone-900 dark:text-white">₹18,70,000</span>
+          </div>
+          <div class="flex justify-between text-stone-600 dark:text-stone-300">
+            <span>RTO Road Tax + Registration + FASTag:</span>
+            <span id="paySumRegFee">₹2,81,100</span>
+          </div>
+          <div class="flex justify-between text-stone-600 dark:text-stone-300">
+            <span>Zero-Dep Insurance + TCS (1%):</span>
+            <span id="paySumDelivery">₹74,800</span>
+          </div>
+          <div class="flex justify-between text-stone-700 dark:text-stone-200 pt-2 border-t border-stone-200 dark:border-stone-700 font-bold">
+            <span>Total On-Road Price:</span>
+            <span id="paySumOnRoadTotal">₹22,25,900</span>
+          </div>
+          <div class="flex justify-between text-crimson-700 dark:text-crimson-400 pt-2 border-t border-stone-200 dark:border-stone-700 text-sm font-extrabold">
+            <span id="paySumDueLabel">Payable Today (Down Payment + On-Road):</span>
+            <span id="paySumTotalDue">₹7,29,900</span>
+          </div>
+          <div id="paySumEmiNote" class="text-[11px] text-emerald-900 dark:text-emerald-300 bg-emerald-500/10 border border-emerald-500/25 rounded-xl p-3 space-y-1"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- POP-UP MODAL 1: LOGIN / SIGN UP MODAL (AUTO-TRIGGERED ON PURCHASE)    -->
+  <!-- ===================================================================== -->
+  <div id="authModalOverlay" class="hidden fixed inset-0 z-50 bg-stone-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="animate-modal bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-2xl max-w-md w-full p-6 space-y-5 shadow-2xl relative">
+      <button onclick="closeAuthPage()" class="pop-btn absolute top-4 right-4 w-8 h-8 rounded-lg bg-stone-100 dark:bg-charcoal-900 text-stone-500 hover:text-stone-900 flex items-center justify-center">
+        ✕
+      </button>
+
+      <!-- Dynamic Notice When Triggered by Clicking Purchase / Book Now -->
+      <div id="authGateBanner" class="hidden p-3 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-900 dark:text-amber-300 text-xs font-semibold">
+        Please sign in or create your account to proceed to the booking & payment page for <strong id="authGateCarName">your selected car</strong>.
+      </div>
+
+      <div class="space-y-1">
+        <span class="text-[11px] font-bold uppercase tracking-wider text-crimson-700 dark:text-crimson-400">CUSTOMER PORTAL</span>
+        <h3 id="authModalHeading" class="text-2xl font-extrabold text-stone-900 dark:text-white">Sign In to AuraDrive India</h3>
+        <p class="text-xs text-stone-500 dark:text-stone-400">Access online car booking, instant bank loan sanction, and RTO registration tracking.</p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-1.5 bg-stone-100 dark:bg-charcoal-900 p-1 rounded-xl">
+        <button id="authTabLogin" type="button" onclick="switchAuthTab('login')" class="pop-btn py-2 rounded-lg text-xs font-bold bg-white dark:bg-charcoal-800 text-stone-900 dark:text-white shadow-sm">
+          Login
+        </button>
+        <button id="authTabRegister" type="button" onclick="switchAuthTab('register')" class="pop-btn py-2 rounded-lg text-xs font-semibold text-stone-500">
+          Create Account
+        </button>
+      </div>
+
+      <form id="authForm" onsubmit="handleAuthSubmit(event)" class="space-y-3.5">
+        <div id="authNameWrapper" class="hidden">
+          <label for="authNameInput" class="block text-xs font-semibold text-stone-500 mb-1">Full Name (as per PAN)</label>
+          <input id="authNameInput" type="text" placeholder="Karthik Shetty" class="w-full bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 rounded-xl px-3.5 py-2.5 text-sm text-stone-900 dark:text-white" />
+        </div>
+        <div>
+          <label for="authEmailInput" class="block text-xs font-semibold text-stone-500 mb-1">Email Address</label>
+          <input id="authEmailInput" type="email" required value="karthik.shetty@auradrive.in" class="w-full bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 rounded-xl px-3.5 py-2.5 text-sm text-stone-900 dark:text-white" />
+        </div>
+        <div>
+          <label for="authPasswordInput" class="block text-xs font-semibold text-stone-500 mb-1">Password</label>
+          <input id="authPasswordInput" type="password" required value="••••••••••" class="w-full bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 rounded-xl px-3.5 py-2.5 text-sm text-stone-900 dark:text-white" />
+        </div>
+
+        <button type="submit" class="pop-btn w-full py-3 rounded-xl font-bold text-sm bg-crimson-700 hover:bg-crimson-800 text-white shadow-md">
+          <span id="authSubmitBtnText">Sign In & Continue →</span>
+        </button>
+      </form>
+
+      <div id="authCurrentSessionBox" class="hidden pt-2 border-t border-stone-200 dark:border-stone-700 flex items-center justify-between text-xs">
+        <span class="text-emerald-700 dark:text-emerald-400 font-semibold">Signed In</span>
+        <button type="button" onclick="logoutUser()" class="pop-btn px-3 py-1 rounded-lg bg-rose-500/15 text-rose-700 dark:text-rose-300 font-semibold">Sign Out</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- POP-UP MODAL 2: CLEAN STUDIO PHOTO GALLERY & FULL SPECS MODAL         -->
+  <!-- ===================================================================== -->
+  <div id="carStudioModalOverlay" class="hidden fixed inset-0 z-50 bg-stone-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="animate-modal bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-3xl max-w-4xl w-full p-5 sm:p-7 space-y-5 shadow-2xl relative my-auto">
+      <div class="flex items-start justify-between gap-4 border-b border-stone-200 dark:border-stone-700 pb-3.5">
+        <div>
+          <span id="studioModalCategory" class="text-xs font-bold uppercase tracking-wider text-crimson-700 dark:text-crimson-400">MID-SIZE SUV</span>
+          <h3 id="studioModalTitle" class="text-xl sm:text-2xl font-extrabold text-stone-900 dark:text-white">Hyundai Creta SX(O) Turbo</h3>
+        </div>
+        <button onclick="closeCarStudioModal()" class="pop-btn w-9 h-9 rounded-xl bg-stone-100 dark:bg-charcoal-900 text-stone-600 dark:text-stone-300 flex items-center justify-center font-bold">
+          ✕
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div class="lg:col-span-7 space-y-3">
+          <div id="studioStageContainer" class="studio-pod relative rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-700 h-64 sm:h-72 flex items-center justify-center"></div>
+
+          <div class="grid grid-cols-3 gap-2">
+            <button id="studioAngleBtn0" onclick="selectStudioAngle(0)" class="pop-btn py-2 px-2 rounded-xl text-xs font-bold bg-charcoal-900 text-white dark:bg-white dark:text-charcoal-900">1. Studio Exterior</button>
+            <button id="studioAngleBtn1" onclick="selectStudioAngle(1)" class="pop-btn py-2 px-2 rounded-xl text-xs font-semibold bg-stone-100 dark:bg-charcoal-900 text-stone-700 dark:text-stone-300">2. Alternate Angle</button>
+            <button id="studioAngleBtn2" onclick="selectStudioAngle(2)" class="pop-btn py-2 px-2 rounded-xl text-xs font-semibold bg-stone-100 dark:bg-charcoal-900 text-stone-700 dark:text-stone-300">3. Cabin & Safety</button>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 space-y-4">
+          <div id="studioSpecsList" class="bg-stone-50 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 rounded-2xl p-4 space-y-2 text-xs"></div>
+
+          <div class="bg-stone-100/80 dark:bg-charcoal-900 border border-stone-200 dark:border-stone-700 rounded-2xl p-4 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] font-bold uppercase text-stone-500 block">EX-SHOWROOM PRICE</span>
+              <span id="studioPriceVal" class="text-xl sm:text-2xl font-extrabold text-stone-900 dark:text-white">₹18.70 Lakh</span>
+            </div>
+            <div class="text-right">
+              <span class="text-[10px] font-bold uppercase text-crimson-700 dark:text-crimson-400 block">EST. MONTHLY EMI</span>
+              <span id="studioEmiVal" class="text-sm font-bold text-crimson-700 dark:text-crimson-400">₹30,890/mo</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2.5">
+            <button id="studioCompareBtn" onclick="toggleCompareFromStudio()" class="pop-btn py-2.5 px-3 rounded-xl text-xs font-bold bg-stone-100 dark:bg-charcoal-900 text-stone-800 dark:text-stone-200">
+              + Compare Specs
+            </button>
+            <button id="studioEmiBtn" onclick="openEmiFromStudio()" class="pop-btn py-2.5 px-3 rounded-xl text-xs font-bold bg-stone-100 dark:bg-charcoal-900 text-crimson-700 dark:text-crimson-400">
+              Loan & EMI Calc
+            </button>
+          </div>
+
+          <button id="studioPurchaseBtn" onclick="purchaseFromStudio()" class="pop-btn w-full py-3 rounded-xl font-bold text-sm bg-crimson-700 hover:bg-crimson-800 text-white shadow-md">
+            Book Now / Proceed to Payment →
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-stone-200/80 dark:border-stone-800 bg-white dark:bg-charcoal-900 py-6 px-4 sm:px-6 text-xs text-stone-500 mt-12">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <span class="font-extrabold text-stone-900 dark:text-white">AURADRIVE INDIA</span>
+        <span> — Authorized Multi-Brand New Car Showroom & Online Auto Finance</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span>Ex-Showroom & On-Road Pricing (₹ Lakh / ₹ Crore)</span>
+        <span>•</span>
+        <span>26 Brand-New Models</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- APPLICATION SCRIPT -->
+  <script>
+    // -----------------------------------------------------------------------
+    // 1. 26 BRAND-NEW INDIAN MARKET VEHICLES (MAINSTREAM + 8 LUXURY MODELS)
+    // -----------------------------------------------------------------------
+    const INITIAL_VEHICLES = [
+      {
+        id: 'ind-1',
+        make: 'Maruti Suzuki',
+        model: 'Swift ZXi+ Dual Tone AGS',
+        year: 2025,
+        category: 'Hatchback',
+        price: 949000,
+        quantity: 6,
+        hp: 80,
+        torque: '111.7 Nm @ 4,300 rpm',
+        engine: '1.2L Z-Series 3-Cyl DualJet Petrol',
+        fuelType: 'Petrol',
+        mileageText: '25.75 km/l ARAI',
+        mileageScore: 25.75,
+        zeroToSixty: 11.8,
+        topSpeed: '165 km/h',
+        transmission: '5-Speed AMT (AGS)',
+        drivetrain: 'FWD',
+        groundClearance: '163 mm',
+        bootSpace: '265 Litres',
+        safety: '6 Airbags Standard • ESP + Hill Hold',
+        seating: '5 Seater',
+        dimensions: '3,860 × 1,735 × 1,520 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/159099/swift-exterior-right-front-three-quarter-31.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/159099/swift-exterior-right-front-three-quarter-108.jpeg?isig=0&q=80'
+      },
+      {
+        id: 'ind-2',
+        make: 'Hyundai',
+        model: 'i20 N Line N8 1.0 Turbo DCT',
+        year: 2025,
+        category: 'Hatchback',
+        price: 1252000,
+        quantity: 4,
+        hp: 118,
+        torque: '172 Nm @ 1,500 rpm',
+        engine: '1.0L Turbo GDi Petrol',
+        fuelType: 'Turbo Petrol',
+        mileageText: '20.2 km/l ARAI',
+        mileageScore: 20.2,
+        zeroToSixty: 9.9,
+        topSpeed: '190 km/h',
+        transmission: '7-Speed Dual Clutch (DCT) w/ Paddles',
+        drivetrain: 'FWD (N-Tuned Suspension & All-4 Disc)',
+        groundClearance: '170 mm',
+        bootSpace: '311 Litres',
+        safety: '6 Airbags • All-Wheel Disc Brakes • TPMS',
+        seating: '5 Seater',
+        dimensions: '3,995 × 1,775 × 1,505 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/158139/i20-n-line-exterior-right-front-three-quarter-16.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/150603/i20-exterior-right-front-three-quarter-13.png?isig=0&q=80'
+      },
+      {
+        id: 'ind-3',
+        make: 'Tata',
+        model: 'Punch.ev Empowered+ S LR',
+        year: 2025,
+        category: 'Electric EV',
+        price: 1399000,
+        quantity: 5,
+        hp: 121,
+        torque: '190 Nm Instant EV Torque',
+        engine: '35 kWh Acti.ev Permanent Magnet Motor',
+        fuelType: 'Electric EV',
+        mileageText: '421 km MIDC Range',
+        mileageScore: 42.1,
+        zeroToSixty: 9.5,
+        topSpeed: '140 km/h',
+        transmission: 'Single-Speed Automatic w/ Multi-Mode Regen',
+        drivetrain: 'FWD (Acti.ev Pure EV Architecture)',
+        groundClearance: '190 mm',
+        bootSpace: '366 Litres + Frunk',
+        safety: '5-Star Bharat NCAP • 6 Airbags • 360° Cam',
+        seating: '5 Seater',
+        dimensions: '3,857 × 1,742 × 1,633 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/217141/punch-ev-exterior-right-front-three-quarter-327.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/217141/punch-ev-exterior-right-front-three-quarter-191.jpeg?isig=0&q=80'
+      },
+      {
+        id: 'ind-4',
+        make: 'Maruti Suzuki',
+        model: 'Fronx Alpha 1.0L Turbo Boosterjet',
+        year: 2025,
+        category: 'Compact SUV',
+        price: 1288000,
+        quantity: 5,
+        hp: 99,
+        torque: '147.6 Nm @ 2,000 rpm',
+        engine: '1.0L Boosterjet Direct-Injection Turbo',
+        fuelType: 'Turbo Petrol Smart Hybrid',
+        mileageText: '20.01 km/l ARAI',
+        mileageScore: 20.01,
+        zeroToSixty: 10.4,
+        topSpeed: '180 km/h',
+        transmission: '6-Speed Torque Converter AT w/ Paddles',
+        drivetrain: 'FWD',
+        groundClearance: '190 mm',
+        bootSpace: '308 Litres',
+        safety: '6 Airbags • 360° View Camera • HUD',
+        seating: '5 Seater',
+        dimensions: '3,995 × 1,765 × 1,550 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/130591/fronx-exterior-right-front-three-quarter-136.jpeg?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/130591/fronx-exterior-right-front-three-quarter-136.jpeg?isig=0&q=80'
+      },
+      {
+        id: 'ind-5',
+        make: 'Maruti Suzuki',
+        model: 'Brezza ZXi+ Smart Hybrid AT',
+        year: 2025,
+        category: 'Compact SUV',
+        price: 1398000,
+        quantity: 4,
+        hp: 102,
+        torque: '136.8 Nm @ 4,400 rpm',
+        engine: '1.5L K15C DualJet Smart Hybrid',
+        fuelType: 'Petrol Hybrid',
+        mileageText: '19.80 km/l ARAI',
+        mileageScore: 19.8,
+        zeroToSixty: 11.2,
+        topSpeed: '175 km/h',
+        transmission: '6-Speed Automatic w/ Paddle Shifters',
+        drivetrain: 'FWD',
+        groundClearance: '198 mm',
+        bootSpace: '328 Litres',
+        safety: '6 Airbags • ESP • 360° Camera • HUD',
+        seating: '5 Seater',
+        dimensions: '3,995 × 1,790 × 1,685 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/212741/brezza-exterior-right-front-three-quarter-129.jpeg?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/212741/brezza-exterior-right-front-three-quarter-129.jpeg?isig=0&q=80'
+      },
+      {
+        id: 'ind-6',
+        make: 'Tata',
+        model: 'Nexon Fearless+ S 1.2 DCA',
+        year: 2025,
+        category: 'Compact SUV',
+        price: 1480000,
+        quantity: 5,
+        hp: 118,
+        torque: '170 Nm @ 1,750 rpm',
+        engine: '1.2L Turbocharged Revotron Petrol',
+        fuelType: 'Turbo Petrol',
+        mileageText: '17.18 km/l ARAI',
+        mileageScore: 17.18,
+        zeroToSixty: 10.6,
+        topSpeed: '180 km/h',
+        transmission: '7-Speed Wet-Clutch DCA Automatic',
+        drivetrain: 'FWD w/ Multi-Drive Modes (Eco/City/Sport)',
+        groundClearance: '208 mm',
+        bootSpace: '382 Litres',
+        safety: '5-Star Global & Bharat NCAP • 6 Airbags',
+        seating: '5 Seater',
+        dimensions: '3,995 × 1,804 × 1,620 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/141867/nexon-exterior-right-front-three-quarter-111.jpeg?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/4a9to8b_1933956.jpg?q=80'
+      },
+      {
+        id: 'ind-7',
+        make: 'Kia',
+        model: 'Sonet GTX+ 1.0 Turbo DCT ADAS',
+        year: 2025,
+        category: 'Compact SUV',
+        price: 1492000,
+        quantity: 3,
+        hp: 118,
+        torque: '172 Nm @ 1,500 rpm',
+        engine: '1.0L Smartstream T-GDi Petrol',
+        fuelType: 'Turbo Petrol',
+        mileageText: '18.7 km/l ARAI',
+        mileageScore: 18.7,
+        zeroToSixty: 10.1,
+        topSpeed: '185 km/h',
+        transmission: '7-Speed Dual Clutch (DCT)',
+        drivetrain: 'FWD w/ Traction Modes',
+        groundClearance: '205 mm',
+        bootSpace: '385 Litres',
+        safety: 'Level-1 ADAS (10 Features) • 6 Airbags • 360° Cam',
+        seating: '5 Seater',
+        dimensions: '3,995 × 1,790 × 1,642 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/174423/sonet-exterior-right-front-three-quarter-12.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/174423/sonet-exterior-right-front-three-quarter-12.png?isig=0&q=80'
+      },
+      {
+        id: 'ind-8',
+        make: 'Volkswagen',
+        model: 'Virtus GT Plus Sport 1.5 TSI EVO',
+        year: 2025,
+        category: 'Sedan',
+        price: 1785000,
+        quantity: 3,
+        hp: 148,
+        torque: '250 Nm @ 1,600 rpm',
+        engine: '1.5L TSI EVO w/ Active Cylinder Tech (ACT)',
+        fuelType: 'Turbo Petrol',
+        mileageText: '19.62 km/l ARAI',
+        mileageScore: 19.62,
+        zeroToSixty: 8.8,
+        topSpeed: '205 km/h',
+        transmission: '7-Speed DSG Dual-Clutch Automatic',
+        drivetrain: 'FWD w/ Electronic Differential Lock (XDS)',
+        groundClearance: '179 mm',
+        bootSpace: '521 Litres',
+        safety: '5-Star Global NCAP • 6 Airbags • ESC',
+        seating: '5 Seater',
+        dimensions: '4,561 × 1,752 × 1,507 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/144681/virtus-exterior-right-front-three-quarter-11.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/r8a3eab_1652341.jpg?q=80'
+      },
+      {
+        id: 'ind-9',
+        make: 'Hyundai',
+        model: 'Verna SX(O) 1.5 Turbo GDi DCT',
+        year: 2025,
+        category: 'Sedan',
+        price: 1742000,
+        quantity: 4,
+        hp: 158,
+        torque: '253 Nm @ 1,500 rpm',
+        engine: '1.5L Turbo GDi Petrol',
+        fuelType: 'Turbo Petrol',
+        mileageText: '20.0 km/l ARAI',
+        mileageScore: 20.0,
+        zeroToSixty: 8.1,
+        topSpeed: '210 km/h',
+        transmission: '7-Speed DCT w/ Paddle Shifters',
+        drivetrain: 'FWD',
+        groundClearance: '170 mm',
+        bootSpace: '528 Litres',
+        safety: '5-Star Global NCAP • Level-2 ADAS • 6 Airbags',
+        seating: '5 Seater',
+        dimensions: '4,535 × 1,765 × 1,475 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/204398/verna-exterior-right-front-three-quarter-2.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/204398/verna-exterior-right-front-three-quarter-17.jpeg?isig=0&q=80'
+      },
+      {
+        id: 'ind-10',
+        make: 'Skoda',
+        model: 'Slavia Monte Carlo 1.5 TSI DSG',
+        year: 2025,
+        category: 'Sedan',
+        price: 1769000,
+        quantity: 2,
+        hp: 148,
+        torque: '250 Nm @ 1,600 rpm',
+        engine: '1.5L TSI EVO Cylinder-Deactivation',
+        fuelType: 'Turbo Petrol',
+        mileageText: '19.36 km/l ARAI',
+        mileageScore: 19.36,
+        zeroToSixty: 8.8,
+        topSpeed: '205 km/h',
+        transmission: '7-Speed DSG Automatic',
+        drivetrain: 'FWD',
+        groundClearance: '179 mm',
+        bootSpace: '521 Litres',
+        safety: '5-Star Global NCAP • 6 Airbags • Multi-Collision Brake',
+        seating: '5 Seater',
+        dimensions: '4,541 × 1,752 × 1,507 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/179753/slavia-exterior-right-front-three-quarter-17.jpeg?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/179753/slavia-exterior-right-front-three-quarter-17.jpeg?isig=0&q=80'
+      },
+      {
+        id: 'ind-11',
+        make: 'Hyundai',
+        model: 'Creta SX(O) 1.5 Turbo GDi DCT',
+        year: 2025,
+        category: 'Mid-Size SUV',
+        price: 1870000,
+        quantity: 6,
+        hp: 158,
+        torque: '253 Nm @ 1,500 rpm',
+        engine: '1.5L Kappa Turbo GDi Petrol',
+        fuelType: 'Turbo Petrol',
+        mileageText: '18.4 km/l ARAI',
+        mileageScore: 18.4,
+        zeroToSixty: 8.9,
+        topSpeed: '195 km/h',
+        transmission: '7-Speed DCT Automatic',
+        drivetrain: 'FWD w/ Snow, Mud & Sand Traction Modes',
+        groundClearance: '190 mm',
+        bootSpace: '433 Litres',
+        safety: 'Level-2 SmartSense ADAS (19 Tech) • 6 Airbags • 360° Cam',
+        seating: '5 Seater',
+        dimensions: '4,330 × 1,790 × 1,635 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/106815/creta-exterior-right-front-three-quarter-6.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/106815/creta-exterior-right-front-three-quarter-18.jpeg?isig=0&q=80'
+      },
+      {
+        id: 'ind-12',
+        make: 'Kia',
+        model: 'Seltos X-Line 1.5 Turbo DCT',
+        year: 2025,
+        category: 'Mid-Size SUV',
+        price: 1965000,
+        quantity: 4,
+        hp: 158,
+        torque: '253 Nm @ 1,500 rpm',
+        engine: '1.5L Smartstream T-GDi Petrol',
+        fuelType: 'Turbo Petrol',
+        mileageText: '17.9 km/l ARAI',
+        mileageScore: 17.9,
+        zeroToSixty: 8.9,
+        topSpeed: '195 km/h',
+        transmission: '7-Speed Dual Clutch (DCT)',
+        drivetrain: 'FWD w/ 18-inch Crystal Cut Alloys',
+        groundClearance: '190 mm',
+        bootSpace: '433 Litres',
+        safety: 'Level-2 ADAS (17 Autonomous Features) • 6 Airbags • HUD',
+        seating: '5 Seater',
+        dimensions: '4,365 × 1,800 × 1,645 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/192817/seltos-exterior-right-front-three-quarter-50.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/192817/seltos-exterior-right-front-three-quarter-53.jpeg?isig=0&q=80'
+      },
+      {
+        id: 'ind-13',
+        make: 'Tata',
+        model: 'Curvv.ev Empowered+ A 55 kWh',
+        year: 2025,
+        category: 'Electric EV',
+        price: 1999000,
+        quantity: 3,
+        hp: 165,
+        torque: '215 Nm Instant EV Drive',
+        engine: '55 kWh Liquid-Cooled Battery Pack (1.2C Fast Charge)',
+        fuelType: 'Electric EV',
+        mileageText: '502 km MIDC Range',
+        mileageScore: 50.2,
+        zeroToSixty: 8.6,
+        topSpeed: '160 km/h',
+        transmission: 'Single-Speed Automatic w/ 4-Level Paddle Regen',
+        drivetrain: 'FWD SUV Coupe Architecture',
+        groundClearance: '190 mm',
+        bootSpace: '500 Litres + Frunk',
+        safety: '5-Star Bharat NCAP • Level-2 ADAS • 6 Airbags • Acoustic Alert',
+        seating: '5 Seater',
+        dimensions: '4,310 × 1,810 × 1,637 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/115617/curvv-ev-exterior-right-front-three-quarter-12.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/115617/curvv-ev-exterior-right-front-three-quarter-8.png?isig=0&q=80'
+      },
+      {
+        id: 'ind-14',
+        make: 'Mahindra',
+        model: 'Thar ROXX AX7L 4WD Diesel AT',
+        year: 2025,
+        category: 'Full-Size & 4x4 SUV',
+        price: 2099000,
+        quantity: 3,
+        hp: 172,
+        torque: '370 Nm @ 1,500 rpm',
+        engine: '2.2L mHawk Gen-2 Turbo Diesel',
+        fuelType: 'Diesel 4x4',
+        mileageText: '15.2 km/l ARAI',
+        mileageScore: 15.2,
+        zeroToSixty: 10.2,
+        topSpeed: '165 km/h',
+        transmission: '6-Speed Aisin Torque Converter AT',
+        drivetrain: '4XPLOR 4WD w/ CrawlSmart & IntelliTurn',
+        groundClearance: '226 mm (650mm Water Wading)',
+        bootSpace: '447 Litres',
+        safety: '5-Star Bharat NCAP • Level-2 ADAS • 6 Airbags',
+        seating: '5 Seater 5-Door',
+        dimensions: '4,428 × 1,870 × 1,923 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/124839/thar-roxx-exterior-right-front-three-quarter-2.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/124839/thar-roxx-exterior-right-front-three-quarter-6.jpeg?isig=0&q=80'
+      },
+      {
+        id: 'ind-15',
+        make: 'Mahindra',
+        model: 'Scorpio-N Z8L 4XPLOR Diesel AT',
+        year: 2025,
+        category: 'Full-Size & 4x4 SUV',
+        price: 2285000,
+        quantity: 4,
+        hp: 172,
+        torque: '400 Nm @ 1,750 rpm',
+        engine: '2.2L mHawk Turbo Diesel',
+        fuelType: 'Diesel 4WD',
+        mileageText: '15.42 km/l ARAI',
+        mileageScore: 15.42,
+        zeroToSixty: 10.1,
+        topSpeed: '175 km/h',
+        transmission: '6-Speed Torque Converter Automatic',
+        drivetrain: '4XPLOR 4WD w/ Mechanical Rear Locking Diff',
+        groundClearance: '187 mm',
+        bootSpace: '460 Litres (3rd Row Folded)',
+        safety: '5-Star Global NCAP • 6 Airbags • Driver Drowsiness Detection',
+        seating: '7 Seater / 6 Captain',
+        dimensions: '4,662 × 1,917 × 1,857 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/40432/scorpio-n-exterior-right-front-three-quarter-4.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/40432/scorpio-n-exterior-right-front-three-quarter-4.png?isig=0&q=80'
+      },
+      {
+        id: 'ind-16',
+        make: 'Mahindra',
+        model: 'XUV700 AX7 Luxury Pack AWD AT',
+        year: 2025,
+        category: 'Full-Size & 4x4 SUV',
+        price: 2499000,
+        quantity: 3,
+        hp: 182,
+        torque: '450 Nm @ 1,750 rpm',
+        engine: '2.2L mHawk Common-Rail Turbo Diesel',
+        fuelType: 'Diesel AWD',
+        mileageText: '16.57 km/l ARAI',
+        mileageScore: 16.57,
+        zeroToSixty: 9.5,
+        topSpeed: '200 km/h',
+        transmission: '6-Speed Automatic',
+        drivetrain: 'All-Wheel Drive (AWD) w/ FSD Suspension',
+        groundClearance: '200 mm',
+        bootSpace: '450 Litres (5-Seat Mode)',
+        safety: '5-Star Global NCAP • Level-2 ADAS • 7 Airbags • Sony 3D Audio',
+        seating: '7 Seater / 6 Captain',
+        dimensions: '4,695 × 1,890 × 1,755 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/42355/xuv700-exterior-right-front-three-quarter-2.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/205104/xuv-7xo-exterior-right-front-three-quarter-517.jpeg?isig=0&q=80'
+      },
+      {
+        id: 'ind-17',
+        make: 'Tata',
+        model: 'Safari Accomplished+ Dark 6S AT',
+        year: 2025,
+        category: 'Full-Size & 4x4 SUV',
+        price: 2549000,
+        quantity: 2,
+        hp: 168,
+        torque: '350 Nm @ 1,750 rpm',
+        engine: '2.0L Kryotec Turbocharged Diesel',
+        fuelType: 'Diesel',
+        mileageText: '16.30 km/l ARAI',
+        mileageScore: 16.3,
+        zeroToSixty: 10.4,
+        topSpeed: '180 km/h',
+        transmission: '6-Speed Automatic w/ E-Shifter',
+        drivetrain: 'FWD (OMEGARC Land Rover D8 Derived Platform)',
+        groundClearance: '205 mm',
+        bootSpace: '420 Litres (3rd Row Folded)',
+        safety: '5-Star Bharat & Global NCAP • 7 Airbags • Level-2 ADAS',
+        seating: '6 Seater (2nd Row Ventilated Captain Seats)',
+        dimensions: '4,668 × 1,922 × 1,795 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/138895/safari-exterior-right-front-three-quarter-40.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/139139/harrier-exterior-right-front-three-quarter-24.jpeg?isig=0&q=80'
+      },
+      {
+        id: 'ind-18',
+        make: 'Mahindra',
+        model: 'XEV 9e Pack Three 79 kWh',
+        year: 2025,
+        category: 'Electric EV',
+        price: 2790000,
+        quantity: 2,
+        hp: 282,
+        torque: '380 Nm Instant Rear Drive',
+        engine: '79 kWh LFP Battery on INGLO Skateboard Platform',
+        fuelType: 'Electric EV',
+        mileageText: '656 km MIDC Range',
+        mileageScore: 65.6,
+        zeroToSixty: 6.8,
+        topSpeed: '200 km/h',
+        transmission: 'Single-Speed 3-in-1 Integrated Powertrain',
+        drivetrain: 'RWD w/ Semi-Active Dampers & Brake-by-Wire',
+        groundClearance: '207 mm',
+        bootSpace: '663 Litres + 150L Frunk',
+        safety: '5-Star Bharat NCAP • Level-2+ ADAS (5 Radars) • 7 Airbags',
+        seating: '5 Seater Electric Coupe SUV',
+        dimensions: '4,789 × 1,907 × 1,694 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/130595/xev-9e-exterior-right-front-three-quarter-11.jpeg?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/225888/be-6-sporteq-exterior-right-front-three-quarter-15.png?isig=0&q=80'
+      },
+      {
+        id: 'ind-19',
+        make: 'Toyota',
+        model: 'Innova Hycross ZX(O) Strong Hybrid',
+        year: 2025,
+        category: 'MPV & Hybrid',
+        price: 3098000,
+        quantity: 3,
+        hp: 184,
+        torque: '206 Nm (e-Drive Combined)',
+        engine: '2.0L TNGA 5th-Gen Strong Self-Charging Hybrid',
+        fuelType: 'Strong Hybrid Petrol',
+        mileageText: '23.24 km/l ARAI',
+        mileageScore: 23.24,
+        zeroToSixty: 9.5,
+        topSpeed: '185 km/h',
+        transmission: 'e-CVT Automatic w/ Sequential Shift',
+        drivetrain: 'FWD Monocoque TNGA-C',
+        groundClearance: '185 mm',
+        bootSpace: '300 Litres (All 3 Rows Up)',
+        safety: 'Toyota Safety Sense 3.0 ADAS • 6 Airbags • Powered Ottoman Seats',
+        seating: '7 Seater Lounge w/ Ottoman Recliner',
+        dimensions: '4,755 × 1,850 × 1,790 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/115025/innova-hycross-exterior-right-front-three-quarter-74.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/mmk9kdb_1739893.jpg?q=80'
+      },
+      {
+        id: 'ind-20',
+        make: 'Toyota',
+        model: 'Fortuner Legender 4x4 AT',
+        year: 2025,
+        category: 'Full-Size & 4x4 SUV',
+        price: 4460000,
+        quantity: 2,
+        hp: 201,
+        torque: '500 Nm @ 1,600 rpm',
+        engine: '2.8L GD Turbo-Diesel',
+        fuelType: 'Diesel 4x4',
+        mileageText: '14.2 km/l ARAI',
+        mileageScore: 14.2,
+        zeroToSixty: 9.8,
+        topSpeed: '190 km/h',
+        transmission: '6-Speed Super ECT Automatic w/ Paddles',
+        drivetrain: '4x4 Sigma4 w/ Electronic Diff Lock & DAC',
+        groundClearance: '225 mm',
+        bootSpace: '296 Litres (All Rows Up)',
+        safety: '7 Airbags • VSC • Active Traction Control (A-TRC)',
+        seating: '7 Seater Full-Size Ladder Frame',
+        dimensions: '4,795 × 1,855 × 1,835 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/44709/fortuner-exterior-right-front-three-quarter-28.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/44709/fortuner-exterior-right-front-three-quarter-28.png?isig=0&q=80'
+      },
+      // --- 8 LUXURY CARS AVAILABLE IN THE INDIAN MARKET ---
+      {
+        id: 'ind-21',
+        make: 'BMW',
+        model: '3 Series Gran Limousine 330Li M Sport',
+        year: 2025,
+        category: 'Luxury',
+        price: 6060000,
+        quantity: 2,
+        hp: 255,
+        torque: '400 Nm @ 1,550 rpm',
+        engine: '2.0L TwinPower Turbo 4-Cylinder Petrol',
+        fuelType: 'Luxury Turbo Petrol',
+        mileageText: '15.39 km/l ARAI',
+        mileageScore: 15.39,
+        zeroToSixty: 6.2,
+        topSpeed: '250 km/h',
+        transmission: '8-Speed Steptronic Sport Automatic',
+        drivetrain: 'RWD (Long Wheelbase 2,961mm)',
+        groundClearance: '165 mm',
+        bootSpace: '480 Litres',
+        safety: '6 Airbags • Dynamic Stability Control • BMW Curved Display iDrive 8.5',
+        seating: '5 Seater Chauffeur LWB',
+        dimensions: '4,819 × 1,827 × 1,441 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/198567/3-series-exterior-right-front-three-quarter-10.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/198567/3-series-exterior-right-front-three-quarter-10.png?isig=0&q=80'
+      },
+      {
+        id: 'ind-22',
+        make: 'Audi',
+        model: 'A6 45 TFSI Technology Matrix LED',
+        year: 2025,
+        category: 'Luxury',
+        price: 6481000,
+        quantity: 2,
+        hp: 241,
+        torque: '370 Nm @ 1,600 rpm',
+        engine: '2.0L TFSI Turbo Petrol + 12V Mild-Hybrid',
+        fuelType: 'Luxury Mild-Hybrid Petrol',
+        mileageText: '14.11 km/l ARAI',
+        mileageScore: 14.11,
+        zeroToSixty: 6.8,
+        topSpeed: '250 km/h',
+        transmission: '7-Speed S tronic Dual-Clutch',
+        drivetrain: 'FWD w/ Progressive Steering',
+        groundClearance: '165 mm',
+        bootSpace: '530 Litres',
+        safety: '8 Airbags • Lane Departure Warning • Virtual Cockpit Plus & B&O 3D',
+        seating: '5 Seater Executive Saloon',
+        dimensions: '4,939 × 1,886 × 1,457 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/39472/a6-exterior-right-front-three-quarter-3.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/39472/a6-exterior-right-front-three-quarter-3.png?isig=0&q=80'
+      },
+      {
+        id: 'ind-23',
+        make: 'Volvo',
+        model: 'XC60 B5 Ultimate Mild-Hybrid AWD',
+        year: 2025,
+        category: 'Luxury',
+        price: 6960000,
+        quantity: 2,
+        hp: 250,
+        torque: '350 Nm @ 1,800 rpm',
+        engine: '2.0L Turbo Petrol + 48V Mild-Hybrid',
+        fuelType: 'Luxury Hybrid AWD',
+        mileageText: '12.40 km/l ARAI',
+        mileageScore: 12.4,
+        zeroToSixty: 6.9,
+        topSpeed: '180 km/h (Safety Limited)',
+        transmission: '8-Speed Geartronic Automatic',
+        drivetrain: 'AWD (All-Wheel Drive)',
+        groundClearance: '216 mm',
+        bootSpace: '483 Litres',
+        safety: '5-Star Euro NCAP • Pilot Assist ADAS • Massage Nappa Seats & Bowers & Wilkins',
+        seating: '5 Seater Scandinavian Luxury SUV',
+        dimensions: '4,708 × 1,902 × 1,658 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/206978/xc60-exterior-right-front-three-quarter-8.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/206978/xc60-exterior-right-front-three-quarter-8.png?isig=0&q=80'
+      },
+      {
+        id: 'ind-24',
+        make: 'Mercedes-Benz',
+        model: 'GLC 300 4MATIC AMG Line',
+        year: 2025,
+        category: 'Luxury',
+        price: 7700000,
+        quantity: 3,
+        hp: 258,
+        torque: '400 Nm + 200 Nm ISG Boost',
+        engine: '2.0L Turbo Petrol w/ 48V Integrated Starter Gen',
+        fuelType: 'Luxury 4MATIC Hybrid',
+        mileageText: '14.72 km/l ARAI',
+        mileageScore: 14.72,
+        zeroToSixty: 6.2,
+        topSpeed: '240 km/h',
+        transmission: '9G-TRONIC 9-Speed Automatic',
+        drivetrain: '4MATIC Permanent AWD w/ Transparent Bonnet View',
+        groundClearance: '198 mm (Off-Road Engineering Package)',
+        bootSpace: '620 Litres',
+        safety: '7 Airbags • Active Brake Assist • Burmester 3D Surround (15 Speakers)',
+        seating: '5 Seater Luxury SUV',
+        dimensions: '4,716 × 1,890 × 1,640 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/178525/glc-exterior-right-front-three-quarter-4.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/178525/glc-exterior-right-front-three-quarter-4.png?isig=0&q=80'
+      },
+      {
+        id: 'ind-25',
+        make: 'Land Rover',
+        model: 'Range Rover Velar Dynamic HSE',
+        year: 2025,
+        category: 'Luxury',
+        price: 8790000,
+        quantity: 2,
+        hp: 247,
+        torque: '365 Nm @ 1,300 rpm',
+        engine: '2.0L Ingenium Twin-Scroll Turbo Petrol',
+        fuelType: 'Luxury AWD SUV',
+        mileageText: '13.10 km/l ARAI',
+        mileageScore: 13.1,
+        zeroToSixty: 7.5,
+        topSpeed: '217 km/h',
+        transmission: '8-Speed ZF Automatic',
+        drivetrain: 'Intelligent AWD w/ Electronic Air Suspension',
+        groundClearance: '251 mm (Air Suspension Raised)',
+        bootSpace: '552 Litres',
+        safety: '6 Airbags • Terrain Response 2 • 11.4" Curved Floating Pivi Pro Glass',
+        seating: '5 Seater Windsor Leather Lounge',
+        dimensions: '4,797 × 2,041 × 1,683 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/153319/range-rover-velar-exterior-right-front-three-quarter-5.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/153319/range-rover-velar-exterior-right-front-three-quarter-5.png?isig=0&q=80'
+      },
+      {
+        id: 'ind-26',
+        make: 'Volvo',
+        model: 'XC90 B6 Ultimate 7-Seater AWD',
+        year: 2025,
+        category: 'Luxury',
+        price: 10089000,
+        quantity: 1,
+        hp: 300,
+        torque: '420 Nm @ 2,100 rpm',
+        engine: '2.0L Supercharged & Turbocharged + 48V Hybrid',
+        fuelType: 'Luxury 7-Seater Hybrid',
+        mileageText: '12.10 km/l ARAI',
+        mileageScore: 12.1,
+        zeroToSixty: 6.7,
+        topSpeed: '180 km/h',
+        transmission: '8-Speed Geartronic Automatic',
+        drivetrain: 'AWD w/ 4-Corner Adaptive Air Suspension',
+        groundClearance: '238 mm',
+        bootSpace: '680 Litres',
+        safety: '5-Star Euro NCAP • Radar ADAS Suite • Orrefors Crystal Gear Shifter',
+        seating: '7 Seater Flagship Luxury SUV',
+        dimensions: '4,953 × 1,923 × 1,771 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/198257/xc90-exterior-right-front-three-quarter-4.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/198257/xc90-exterior-right-front-three-quarter-4.png?isig=0&q=80'
+      },
+      {
+        id: 'ind-27',
+        make: 'Land Rover',
+        model: 'Defender 110 X-Dynamic HSE D300',
+        year: 2025,
+        category: 'Luxury',
+        price: 10700000,
+        quantity: 2,
+        hp: 296,
+        torque: '650 Nm @ 1,500 rpm',
+        engine: '3.0L Twin-Turbo Inline-6 Ingenium MHEV Diesel',
+        fuelType: 'Luxury 4x4 Diesel',
+        mileageText: '11.50 km/l ARAI',
+        mileageScore: 11.5,
+        zeroToSixty: 7.0,
+        topSpeed: '191 km/h',
+        transmission: '8-Speed Automatic w/ Twin-Speed Transfer Box',
+        drivetrain: 'Permanent 4WD w/ Electronic Active Differential',
+        groundClearance: '291 mm (900mm Water Wading)',
+        bootSpace: '786 Litres',
+        safety: '5-Star Euro NCAP • 3D Surround Camera • Wade Sensing & ClearSight',
+        seating: '5+2 Seater Expedition Luxury 4x4',
+        dimensions: '5,018 × 2,008 × 1,967 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/55215/defender-exterior-right-front-three-quarter-31.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/55215/defender-exterior-right-front-three-quarter-29.png?isig=0&q=80'
+      },
+      {
+        id: 'ind-28',
+        make: 'Mercedes-Benz',
+        model: 'S-Class S 350d 4MATIC LWB',
+        year: 2025,
+        category: 'Luxury',
+        price: 17700000,
+        quantity: 1,
+        hp: 282,
+        torque: '600 Nm @ 1,200 rpm',
+        engine: '3.0L Inline-6 OM656 Turbo Diesel',
+        fuelType: 'Flagship Luxury Diesel',
+        mileageText: '13.88 km/l ARAI',
+        mileageScore: 13.88,
+        zeroToSixty: 6.4,
+        topSpeed: '250 km/h',
+        transmission: '9G-TRONIC 9-Speed Automatic',
+        drivetrain: '4MATIC AWD w/ Rear-Axle Steering (Up to 10°)',
+        groundClearance: '160 mm (AIRMATIC Air Suspension)',
+        bootSpace: '550 Litres',
+        safety: '10 Airbags (Incl. Rear Seat Frontal Airbags) • Chauffeur Rear Lounge Package',
+        seating: '5 Seater Flagship Limousine',
+        dimensions: '5,289 × 1,954 × 1,503 mm',
+        studioImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/216615/s-class-exterior-right-front-three-quarter-17.png?isig=0&q=80',
+        altImg: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/216615/s-class-exterior-right-front-three-quarter-17.png?isig=0&q=80'
+      }
+    ];
+
+    // -----------------------------------------------------------------------
+    // 2. APPLICATION STATE & INDIAN CURRENCY HELPERS
+    // -----------------------------------------------------------------------
+    let vehicles = JSON.parse(JSON.stringify(INITIAL_VEHICLES));
+    let activeCategory = 'ALL';
+    let cardAngleState = {}; // { [carId]: 0..2 }
+    let compareList = ['ind-11', 'ind-21', 'ind-27'];
+    let currentUser = null; // Starts logged out so clicking Purchase/Book Now triggers Login!
+    let pendingCheckoutCarId = null;
+    let authMode = 'login';
+    let studioCarId = 'ind-11';
+    let studioAngleIdx = 0;
+    let checkoutCarId = 'ind-11';
+    let paymentPlan = 'emi'; // Default to Loan & EMI so the Loan & EMI section is immediately visible!
+    let checkoutLoanBank = 'SBI Car Loan';
+    let checkoutLoanRate = 8.75;
+    let paymentInstrument = 'upi';
+    let selectedNetbankName = 'State Bank of India SBI';
+    let isDarkTheme = false;
+
+    try {
+      const savedCars = localStorage.getItem('auradrive_india_vehicles_v4');
+      if (savedCars) {
+        const parsed = JSON.parse(savedCars);
+        if (Array.isArray(parsed) && parsed.length >= 25) vehicles = parsed;
+      }
+    } catch (err) {}
+
+    function saveState() {
+      try {
+        localStorage.setItem('auradrive_india_vehicles_v4', JSON.stringify(vehicles));
+      } catch (err) {}
+    }
+
+    function formatLakh(rupees) {
+      if (rupees >= 10000000) {
+        return '₹' + (rupees / 10000000).toFixed(2) + ' Cr';
+      }
+      return '₹' + (rupees / 100000).toFixed(2) + ' Lakh';
+    }
+
+    function formatINR(rupees) {
+      return '₹' + Math.round(rupees).toLocaleString('en-IN');
+    }
+
+    function getCityTaxRate() {
+      const sel = document.getElementById('citySelect');
+      if (!sel) return 0.18;
+      const opt = sel.options[sel.selectedIndex];
+      return Number(opt.getAttribute('data-tax') || 0.18);
+    }
+
+    function getCityName() {
+      const sel = document.getElementById('citySelect');
+      return sel ? sel.value : 'Udupi / Mangaluru';
+    }
+
+    function calculateOnRoadPrice(exShowroom) {
+      const rtoRate = getCityTaxRate();
+      const rtoTax = Math.round(exShowroom * rtoRate) + 600;
+      const insurance = Math.round(exShowroom * 0.035);
+      const tcs = exShowroom > 1000000 ? Math.round(exShowroom * 0.01) : 0;
+      return {
+        exShowroom,
+        rtoTax,
+        insuranceAndTcs: insurance + tcs,
+        totalOnRoad: exShowroom + rtoTax + insurance + tcs
+      };
+    }
+
+    function calculateQuickIndianEmi(price, rate = 8.75, downPct = 20, months = 60) {
+      const principal = price * (1 - downPct / 100);
+      const r = rate / 12 / 100;
+      const n = months;
+      if (principal <= 0) return 0;
+      const emi = (principal * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+      return Math.round(emi);
+    }
+
+    function toggleColorTheme() {
+      isDarkTheme = !isDarkTheme;
+      document.documentElement.classList.toggle('dark', isDarkTheme);
+      const icon = document.getElementById('themeToggleIcon');
+      if (icon) icon.textContent = isDarkTheme ? '☀ Light' : '☾ Dark';
+    }
+
+    function handleCityChange() {
+      const cityLabel = document.getElementById('headerCityLabel');
+      if (cityLabel) cityLabel.textContent = getCityName();
+      renderShowroomGrid();
+      renderCompareView();
+      updatePaymentSummaryCard();
+      showToast(`Updated On-Road prices for ${getCityName()}.`);
+    }
+
+    // -----------------------------------------------------------------------
+    // 3. CLEAN UN-DISTORTED PHOTO GALLERY & CABIN SPEC RENDERER
+    // -----------------------------------------------------------------------
+    function renderCarVisualHtml(car, angleIdx) {
+      if (angleIdx === 2) {
+        return `
+          <div class="w-full h-full bg-charcoal-900 text-white p-4 flex flex-col justify-between relative overflow-hidden">
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="px-2 py-0.5 rounded bg-white/10 font-bold text-amber-300">CABIN, DIMENSIONS & SAFETY</span>
+              <span class="text-stone-300 font-semibold">${car.seating}</span>
+            </div>
+            <div class="my-auto grid grid-cols-2 gap-2.5 text-left">
+              <div class="bg-charcoal-800 p-2.5 rounded-xl border border-stone-700">
+                <div class="text-[10px] text-stone-400 uppercase">Safety & NCAP</div>
+                <div class="text-xs font-bold text-emerald-300 mt-0.5">${car.safety}</div>
+              </div>
+              <div class="bg-charcoal-800 p-2.5 rounded-xl border border-stone-700">
+                <div class="text-[10px] text-stone-400 uppercase">Boot & Clearance</div>
+                <div class="text-xs font-bold text-white mt-0.5">Boot: ${car.bootSpace} • GC: ${car.groundClearance}</div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between text-[10px] text-stone-400">
+              <span>L×W×H: ${car.dimensions}</span>
+              <span class="text-amber-300 font-bold">${car.drivetrain.split(' ')[0]}</span>
+            </div>
+          </div>
+        `;
+      }
+
+      const isAlt = angleIdx === 1;
+      const imgUrl = isAlt ? (car.altImg || car.studioImg) : car.studioImg;
+      const badgeLabel = isAlt ? 'Alternate Angle' : 'Showroom Exterior';
+      const rightLabel = isAlt ? `GC: ${car.groundClearance.split(' ')[0]} mm` : `${car.hp} BHP • ${car.fuelType}`;
+
+      return `
+        <div class="w-full h-full relative flex items-center justify-center p-3 overflow-hidden">
+          <div class="floor-shadow absolute bottom-3 w-3/4 h-7 rounded-full pointer-events-none"></div>
+          <img
+            src="${imgUrl}"
+            alt="${car.make} ${car.model} - ${badgeLabel}"
+            loading="lazy"
+            onerror="this.src='${car.studioImg}'"
+            class="relative z-10 max-h-full max-w-full object-contain transition-transform duration-300 hover:scale-105"
+          />
+          <div class="absolute bottom-2 left-2.5 z-20 px-2 py-0.5 rounded-md bg-white/90 dark:bg-charcoal-900/90 border border-stone-200 dark:border-stone-700 text-[10px] font-bold text-stone-700 dark:text-stone-200 shadow-sm">
+            ${badgeLabel}
+          </div>
+          <div class="absolute bottom-2 right-2.5 z-20 px-2 py-0.5 rounded-md bg-charcoal-900/85 text-white text-[10px] font-semibold">
+            ${rightLabel}
+          </div>
+        </div>
+      `;
+    }
+
+    function showToast(message, type = 'green') {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+      const toast = document.createElement('div');
+      const dotClass = type === 'red' ? 'bg-rose-500' : 'bg-emerald-500';
+      toast.className = 'animate-modal pointer-events-auto bg-charcoal-900 text-white px-4 py-3 rounded-xl shadow-xl flex items-center gap-2.5 text-xs font-semibold max-w-sm border border-stone-700';
+      toast.innerHTML = `<span class="w-2 h-2 rounded-full ${dotClass} shrink-0"></span><span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 3400);
+    }
+
+    // -----------------------------------------------------------------------
+    // 4. SHOWROOM FILTERING & CARD GRID RENDERING
+    // -----------------------------------------------------------------------
+    function setCategoryFilter(cat) {
+      activeCategory = cat;
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        if (btn.getAttribute('data-cat') === cat) {
+          btn.className = 'cat-pill pop-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-crimson-700 text-white';
+        } else {
+          btn.className = 'cat-pill pop-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-stone-100 dark:bg-charcoal-900 text-stone-700 dark:text-stone-300';
+        }
+      });
+      renderShowroomGrid();
+    }
+
+    function handleFilterChange() {
+      const maxPrice = Number(document.getElementById('priceRangeFilter').value || 20000000);
+      document.getElementById('priceRangeLabel').textContent = formatLakh(maxPrice);
+      renderShowroomGrid();
+    }
+
+    function switchCardAngle(carId, angleIdx) {
+      cardAngleState[carId] = angleIdx;
+      renderShowroomGrid();
+    }
+
+    function renderShowroomGrid() {
+      const query = (document.getElementById('searchInput').value || '').trim().toLowerCase();
+      const maxPrice = Number(document.getElementById('priceRangeFilter').value || 20000000);
+      const sortBy = document.getElementById('sortSelect').value;
+
+      let filtered = vehicles.filter(car => {
+        const matchesCat = activeCategory === 'ALL' || car.category === activeCategory;
+        const matchesPrice = car.price <= maxPrice;
+        const matchesQuery = !query ||
+          car.make.toLowerCase().includes(query) ||
+          car.model.toLowerCase().includes(query) ||
+          car.category.toLowerCase().includes(query) ||
+          car.fuelType.toLowerCase().includes(query) ||
+          car.engine.toLowerCase().includes(query) ||
+          car.safety.toLowerCase().includes(query);
+        return matchesCat && matchesPrice && matchesQuery;
+      });
+
+      if (sortBy === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+      if (sortBy === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+      if (sortBy === 'mileage-desc') filtered.sort((a, b) => (b.mileageScore || 0) - (a.mileageScore || 0));
+      if (sortBy === 'hp-desc') filtered.sort((a, b) => b.hp - a.hp);
+
+      document.getElementById('navBadgeCount').textContent = String(filtered.length);
+
+      const grid = document.getElementById('vehiclesGrid');
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-white dark:bg-charcoal-800 border border-stone-200 dark:border-stone-700 rounded-2xl p-10 text-center space-y-3">
+            <div class="text-lg font-bold text-stone-900 dark:text-white">No Cars Found Within Selected Filter</div>
+            <p class="text-xs text-stone-500">Increase the budget slider or reset segment filters to view all 26 Indian models.</p>
+            <button onclick="resetAllFilters()" class="pop-btn px-4 py-2 rounded-xl text-xs font-bold bg-crimson-700 text-white">
+              Reset Filters
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      const angleLabels = ['Exterior', 'Alt Angle', 'Cabin & Specs'];
+
+      grid.innerHTML = filtered.map(car => {
+        const currentAngle = cardAngleState[car.id] !== undefined ? cardAngleState[car.id] : 0;
+        const inCompare = compareList.includes(car.id);
+        const isOut = car.quantity <= 0;
+        const onRoadObj = calculateOnRoadPrice(car.price);
+        const estEmi = calculateQuickIndianEmi(car.price);
+        const isLuxury = car.category === 'Luxury';
+
+        const stockBadge = isOut
+          ? `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-rose-500/15 text-rose-700 dark:text-rose-300">Booked Out</span>`
+          : `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/15 text-emerald-800 dark:text-emerald-300">● ${car.quantity} Available</span>`;
+
+        const catBadgeClass = isLuxury
+          ? 'bg-amber-500/15 text-amber-900 dark:text-amber-300 border border-amber-500/30'
+          : 'bg-stone-100 dark:bg-charcoal-900 text-stone-600 dark:text-stone-300';
+
+        const angleButtonsHtml = angleLabels.map((lbl, idx) => {
+          const isActive = idx === currentAngle;
+          const activeClass = isActive
+            ? 'bg-charcoal-900 text-white dark:bg-white dark:text-charcoal-900 font-bold'
+            : 'bg-stone-100 dark:bg-charcoal-900 text-stone-600 dark:text-stone-300 hover:text-stone-900';
+          return `
+            <button
+              onclick="switchCardAngle('${car.id}', ${idx})"
+              class="pop-btn py-1 px-2 rounded-lg text-[10px] ${activeClass}"
+            >${lbl}</button>
+          `;
+        }).join('');
+
+        return `
+          <article class="showroom-card rounded-2xl overflow-hidden flex flex-col justify-between">
+            <div>
+              <div class="p-4 pb-2 flex items-center justify-between gap-2">
+                <span class="px-2.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider ${catBadgeClass}">${car.category}</span>
+                ${stockBadge}
+              </div>
+
+              <div class="px-4">
+                <div onclick="openCarStudioModal('${car.id}')" class="studio-pod h-48 rounded-2xl overflow-hidden border border-stone-200/70 dark:border-stone-700 cursor-pointer group">
+                  ${renderCarVisualHtml(car, currentAngle)}
+                  <div class="absolute top-2.5 right-2.5 z-20 px-2.5 py-1 rounded-full bg-white/90 dark:bg-charcoal-900/90 border border-stone-200 dark:border-stone-700 text-[10px] font-bold text-stone-800 dark:text-white shadow-sm group-hover:bg-crimson-700 group-hover:text-white transition-colors">
+                    View Details
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-1.5 mt-2">
+                  ${angleButtonsHtml}
+                </div>
+              </div>
+
+              <div class="p-4 pb-3 space-y-3">
+                <div>
+                  <div class="text-xs font-semibold text-stone-400">${car.make} • ${car.fuelType}</div>
+                  <h3 class="text-lg font-extrabold text-stone-900 dark:text-white leading-snug">${car.model}</h3>
+                </div>
+
+                <div class="grid grid-cols-2 gap-1.5 text-[11px] bg-stone-50 dark:bg-charcoal-900 p-2.5 rounded-xl border border-stone-200/60 dark:border-stone-700">
+                  <div class="text-stone-500">Power: <span class="text-stone-900 dark:text-white font-bold">${car.hp} BHP</span></div>
+                  <div class="text-stone-500">Mileage: <span class="text-emerald-700 dark:text-emerald-400 font-bold">${car.mileageText}</span></div>
+                  <div class="text-stone-500">Clearance: <span class="text-stone-900 dark:text-white font-semibold">${car.groundClearance.split(' ')[0]} mm</span></div>
+                  <div class="text-stone-500">Gearbox: <span class="text-stone-900 dark:text-white font-semibold">${car.transmission.split(' ')[0]} ${car.transmission.split(' ')[1] || ''}</span></div>
+                </div>
+
+                <div class="flex items-end justify-between pt-1">
+                  <div>
+                    <span class="text-[10px] font-bold uppercase text-stone-400 block">EX-SHOWROOM</span>
+                    <span class="text-xl font-extrabold text-stone-900 dark:text-white">${formatLakh(car.price)}</span>
+                    <span class="text-[11px] text-stone-500 block">On-Road ${getCityName().split(' ')[0]}: ~${formatLakh(onRoadObj.totalOnRoad)}</span>
+                  </div>
+                  <button onclick="openEmiForCar('${car.id}')" class="pop-btn text-right group">
+                    <span class="text-[10px] font-bold uppercase text-crimson-700 dark:text-crimson-400 block group-hover:underline">EMI FROM ↗</span>
+                    <span class="text-xs font-extrabold text-stone-800 dark:text-stone-200">${formatINR(estEmi)}/mo</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 pt-0 space-y-2">
+              <div class="grid grid-cols-2 gap-2">
+                <button
+                  onclick="toggleCompareCar('${car.id}')"
+                  class="pop-btn py-2 px-3 rounded-xl text-xs font-bold border ${
+                    inCompare
+                      ? 'bg-amber-500/15 text-amber-900 dark:text-amber-300 border-amber-500/40'
+                      : 'bg-stone-50 dark:bg-charcoal-900 text-stone-700 dark:text-stone-300 border-stone-200 dark:border-stone-700'
+                  }"
+                >
+                  ${inCompare ? '✓ In Compare' : '+ Compare Specs'}
+                </button>
+                <button
+                  onclick="openEmiForCar('${car.id}')"
+                  class="pop-btn py-2 px-3 rounded-xl text-xs font-bold bg-stone-50 dark:bg-charcoal-900 text-stone-800 dark:text-stone-200 border border-stone-200 dark:border-stone-700"
+                >
+                  Calculate EMI
+                </button>
+              </div>
+
+              <button
+                onclick="startPurchaseFlow('${car.id}')"
+                ${isOut ? 'disabled' : ''}
+                class="pop-btn w-full py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+                  isOut
+                    ? 'bg-stone-200 dark:bg-stone-800 text-stone-400 cursor-not-allowed'
+                    : 'bg-crimson-700 hover:bg-crimson-800 text-white shadow-sm'
+                }"
+              >
+                ${isOut ? 'Sold Out — Booking Closed' : 'Book Now / Purchase →'}
+              </button>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      renderCompareFloatingTray();
+    }
+
+    function resetAllFilters() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('priceRangeFilter').value = '20000000';
+      document.getElementById('priceRangeLabel').textContent = '₹2.00 Cr';
+      setCategoryFilter('ALL');
+    }
+
+    // -----------------------------------------------------------------------
+    // 5. SPECIFICATION-FIRST COMPARISON (PRICE BELOW)
+    // -----------------------------------------------------------------------
+    function toggleCompareCar(carId) {
+      if (compareList.includes(carId)) {
+        compareList = compareList.filter(id => id !== carId);
+        showToast('Removed car from comparison.', 'red');
+      } else {
+        if (compareList.length >= 4) {
+          compareList.shift();
+        }
+        compareList.push(carId);
+        showToast('Added car to Specification Comparison!');
+      }
+      updateCompareBadges();
+      renderShowroomGrid();
+      renderCompareView();
+    }
+
+    function clearComparisonList() {
+      compareList = [];
+      updateCompareBadges();
+      renderShowroomGrid();
+      renderCompareView();
+    }
+
+    function updateCompareBadges() {
+      document.getElementById('navCompareCount').textContent = String(compareList.length);
+      document.getElementById('heroCompareBadge').textContent = String(compareList.length);
+    }
+
+    function renderCompareFloatingTray() {
+      const bar = document.getElementById('compareFloatingBar');
+      const pills = document.getElementById('compareTrayPills');
+      if (compareList.length === 0) {
+        bar.classList.add('hidden');
+        return;
+      }
+      bar.classList.remove('hidden');
+      pills.innerHTML = compareList.map(id => {
+        const car = vehicles.find(c => c.id === id);
+        if (!car) return '';
+        return `
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-charcoal-800 text-white font-semibold">
+            <span>${car.make} ${car.model.split(' ')[0]}</span>
+            <button onclick="toggleCompareCar('${car.id}')" class="text-amber-300 hover:text-white font-bold">✕</button>
+          </span>
+        `;
+      }).join('');
+    }
+
+    function renderCompareView() {
+      const selector = document.getElementById('compareQuickSelector');
+      selector.innerHTML = vehicles.map(car => {
+        const active = compareList.includes(car.id);
+        return `
+          <button
+            onclick="toggleCompareCar('${car.id}')"
+            class="pop-btn px-2.5 py-1 rounded-lg text-xs font-semibold border ${
+              active
+                ? 'bg-crimson-700 text-white border-crimson-700 font-bold'
+                : 'bg-stone-50 dark:bg-charcoal-900 text-stone-600 dark:text-stone-300 border-stone-200 dark:border-stone-700'
+            }"
+          >
+            ${active ? '✓ ' : '+ '}${car.make} ${car.model.split(' ')[0]} ${car.model.split(' ')[1] || ''}
+          </button>
+        `;
+      }).join('');
+
+      const container = document.getElementById('compareTableContainer');
+      const selectedCars = compareList.map(id => vehicles.find(c => c.id === id)).filter(Boolean);
+
+      if (selectedCars.length === 0) {
+        container.innerHTML = `
+          <div class="p-10 text-center space-y-2">
+            <h3 class="text-lg font-bold text-stone-900 dark:text-white">No Vehicles Selected for Comparison</h3>
+            <p class="text-xs text-stone-500">Click any car pill above to benchmark Indian specifications side-by-side.</p>
+          </div>
+        `;
+        return;
+      }
+
+      const maxHp = Math.max(...selectedCars.map(c => c.hp));
+      const minSprint = Math.min(...selectedCars.map(c => c.zeroToSixty));
+      const minPrice = Math.min(...selectedCars.map(c => c.price));
+
+      const specRows = [
+        { label: 'Segment & Body Style', key: 'category' },
+        { label: 'Engine / Motor Architecture', key: 'engine' },
+        { label: 'Fuel / Powertrain Type', key: 'fuelType' },
+        {
+          label: 'Max Power (BHP)',
+          render: c => {
+            const best = c.hp === maxHp && selectedCars.length > 1;
+            return `<span class="font-bold ${best ? 'text-crimson-700 dark:text-crimson-400' : ''}">${c.hp} BHP ${best ? '★ Highest' : ''}</span>`;
+          }
+        },
+        { label: 'Peak Torque Output', key: 'torque' },
+        { label: 'ARAI Mileage / EV Range', render: c => `<span class="font-bold text-emerald-700 dark:text-emerald-400">${c.mileageText}</span>` },
+        { label: 'Transmission Gearbox', key: 'transmission' },
+        { label: 'Drivetrain System', key: 'drivetrain' },
+        { label: 'Ground Clearance (Indian Spec)', render: c => `<span class="font-semibold">${c.groundClearance}</span>` },
+        { label: 'Boot Space & Seating', render: c => `${c.bootSpace} • ${c.seating}` },
+        { label: 'Safety & Crash Rating (NCAP)', render: c => `<span class="font-semibold text-stone-800 dark:text-stone-200">${c.safety}</span>` },
+        {
+          label: '0–100 km/h Acceleration',
+          render: c => {
+            const fast = c.zeroToSixty === minSprint && selectedCars.length > 1;
+            return `<span class="font-bold ${fast ? 'text-emerald-700 dark:text-emerald-400' : ''}">${c.zeroToSixty} sec ${fast ? '⚡ Fastest' : ''}</span>`;
+          }
+        },
+        { label: 'Dimensions (L × W × H)', key: 'dimensions' }
+      ];
+
+      container.innerHTML = `
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="border-b border-stone-200 dark:border-stone-700 bg-stone-50/70 dark:bg-charcoal-900/60">
+              <th class="p-4 w-56 font-bold uppercase text-xs text-stone-500">Technical Specifications</th>
+              ${selectedCars.map(car => `
+                <th class="p-4 min-w-[220px] border-l border-stone-200/80 dark:border-stone-700">
+                  <div onclick="openCarStudioModal('${car.id}')" class="studio-pod h-32 rounded-xl overflow-hidden border border-stone-200/60 dark:border-stone-700 mb-2.5 cursor-pointer flex items-center justify-center p-2">
+                    <img src="${car.studioImg}" alt="${car.model}" class="max-h-full max-w-full object-contain"/>
+                  </div>
+                  <div class="text-[11px] font-bold text-crimson-700 dark:text-crimson-400 uppercase">${car.make} • ${car.category}</div>
+                  <div class="text-base font-extrabold text-stone-900 dark:text-white">${car.model}</div>
+                </th>
+              `).join('')}
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-200/70 dark:divide-stone-700">
+            ${specRows.map(row => `
+              <tr class="hover:bg-stone-50/80 dark:hover:bg-charcoal-900/40">
+                <td class="p-3.5 font-semibold text-stone-500 bg-stone-50/40 dark:bg-charcoal-900/30">${row.label}</td>
+                ${selectedCars.map(car => `
+                  <td class="p-3.5 border-l border-stone-200/70 dark:border-stone-700 text-stone-800 dark:text-stone-200">
+                    ${row.render ? row.render(car) : (car[row.key] || '-')}
+                  </td>
+                `).join('')}
+              </tr>
+            `).join('')}
+
+            <!-- PRICE & EMI SUMMARY ANCHORED BELOW SPECIFICATIONS -->
+            <tr class="bg-amber-500/5 dark:bg-charcoal-900 border-t-2 border-crimson-700">
+              <td class="p-4 font-extrabold uppercase text-xs text-stone-900 dark:text-white">
+                <div>Price & EMI Summary</div>
+                <div class="text-[11px] font-normal text-stone-500 mt-0.5">Ex-Showroom, On-Road (${getCityName().split(' ')[0]}) & EMI</div>
+              </td>
+              ${selectedCars.map(car => {
+                const isLowest = car.price === minPrice && selectedCars.length > 1;
+                const onRoad = calculateOnRoadPrice(car.price);
+                const emi = calculateQuickIndianEmi(car.price);
+                return `
+                  <td class="p-4 border-l border-stone-200/80 dark:border-stone-700 space-y-2">
+                    <div>
+                      <span class="text-[10px] font-bold uppercase text-stone-400 block">EX-SHOWROOM PRICE</span>
+                      <span class="text-xl font-extrabold text-stone-900 dark:text-white">${formatLakh(car.price)}</span>
+                      ${isLowest ? '<span class="ml-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-800 dark:text-emerald-300">Lowest Price</span>' : ''}
+                    </div>
+                    <div class="text-xs text-stone-600 dark:text-stone-300">
+                      Est. On-Road: <strong>${formatLakh(onRoad.totalOnRoad)}</strong>
+                    </div>
+                    <div class="text-xs text-crimson-700 dark:text-crimson-400 font-bold">
+                      EMI: ${formatINR(emi)}/mo (60m @ 8.75%)
+                    </div>
+                    <div class="pt-1 flex gap-2">
+                      <button onclick="openEmiForCar('${car.id}')" class="pop-btn flex-1 py-2 px-2 rounded-xl text-xs font-bold bg-stone-100 dark:bg-charcoal-800 text-stone-800 dark:text-stone-200">
+                        EMI Calc
+                      </button>
+                      <button
+                        onclick="startPurchaseFlow('${car.id}')"
+                        ${car.quantity <= 0 ? 'disabled' : ''}
+                        class="pop-btn flex-1 py-2 px-2 rounded-xl text-xs font-bold bg-crimson-700 text-white disabled:opacity-40"
+                      >
+                        ${car.quantity <= 0 ? 'Sold Out' : 'Book Now →'}
+                      </button>
+                    </div>
+                  </td>
+                `;
+              }).join('')}
+            </tr>
+          </tbody>
+        </table>
+      `;
+    }
+
+    // -----------------------------------------------------------------------
+    // 6. STANDALONE EMI CALCULATOR
+    // -----------------------------------------------------------------------
+    function populateEmiSelect() {
+      const sel = document.getElementById('emiVehicleSelect');
+      if (!sel) return;
+      sel.innerHTML = vehicles.map(car => `
+        <option value="${car.id}">${car.make} ${car.model} — ${formatLakh(car.price)}</option>
+      `).join('');
+    }
+
+    function setBankRate(rate) {
+      document.getElementById('emiRateInput').value = String(rate);
+      recalculateEmi();
+    }
+
+    function handleEmiVehicleChange() {
+      const carId = document.getElementById('emiVehicleSelect').value;
+      const car = vehicles.find(c => c.id === carId);
+      if (car) {
+        document.getElementById('emiPriceInput').value = String(car.price);
+        document.getElementById('emiSelectedCarCaption').textContent = `Calculated for ${car.make} ${car.model}`;
+      }
+      recalculateEmi();
+    }
+
+    function openEmiForCar(carId) {
+      const car = vehicles.find(c => c.id === carId);
+      if (car) {
+        populateEmiSelect();
+        document.getElementById('emiVehicleSelect').value = car.id;
+        document.getElementById('emiPriceInput').value = String(car.price);
+        document.getElementById('emiSelectedCarCaption').textContent = `Calculated for ${car.make} ${car.model}`;
+      }
+      switchMainView('emi');
+      recalculateEmi();
+    }
+
+    function recalculateEmi() {
+      const price = Number(document.getElementById('emiPriceInput').value || 1870000);
+      const downPct = Number(document.getElementById('emiDownPaymentInput').value || 20);
+      const annualRate = Number(document.getElementById('emiRateInput').value || 8.75);
+      const months = Number(document.getElementById('emiTenureInput').value || 60);
+
+      const downPayment = Math.round(price * (downPct / 100));
+      const principal = Math.max(0, price - downPayment);
+      const monthlyRate = annualRate / 12 / 100;
+
+      let emi = 0;
+      if (principal > 0) {
+        emi = (principal * monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+      }
+      const totalLoanPayment = emi * months;
+      const totalInterest = Math.max(0, totalLoanPayment - principal);
+      const totalPayable = downPayment + totalLoanPayment;
+
+      document.getElementById('emiPriceDisplay').textContent = formatLakh(price);
+      document.getElementById('emiDownPctLabel').textContent = downPct + '%';
+      document.getElementById('emiDownPaymentDisplay').textContent = formatINR(downPayment);
+      document.getElementById('emiRateDisplay').textContent = annualRate.toFixed(2) + '%';
+      document.getElementById('emiTenureDisplay').textContent = `${months} Months (${(months / 12).toFixed(0)} Yrs)`;
+
+      document.getElementById('emiMonthlyResult').textContent = formatINR(emi) + ' / mo';
+      document.getElementById('emiLoanPrincipalVal').textContent = formatINR(principal);
+      document.getElementById('emiTotalInterestVal').textContent = formatINR(totalInterest);
+      document.getElementById('emiDownValCard').textContent = formatINR(downPayment);
+      document.getElementById('emiTotalPayableVal').textContent = formatINR(totalPayable);
+
+      const pRatio = totalLoanPayment > 0 ? Math.round((principal / totalLoanPayment) * 100) : 100;
+      const iRatio = 100 - pRatio;
+      document.getElementById('emiPrincipalPct').textContent = pRatio + '%';
+      document.getElementById('emiInterestPct').textContent = iRatio + '%';
+      document.getElementById('emiBarPrincipal').style.width = pRatio + '%';
+      document.getElementById('emiBarInterest').style.width = iRatio + '%';
+
+      const tbody = document.getElementById('emiScheduleBody');
+      let balance = principal;
+      const totalYears = Math.ceil(months / 12);
+      const rows = [];
+      for (let yr = 1; yr <= totalYears; yr++) {
+        const startBal = balance;
+        const mCount = Math.min(12, months - (yr - 1) * 12);
+        let yrInterest = 0;
+        let yrPrincipal = 0;
+        for (let m = 0; m < mCount; m++) {
+          const intPart = balance * monthlyRate;
+          const prinPart = Math.min(balance, emi - intPart);
+          yrInterest += intPart;
+          yrPrincipal += prinPart;
+          balance = Math.max(0, balance - prinPart);
+        }
+        rows.push(`
+          <tr class="hover:bg-stone-50 dark:hover:bg-charcoal-900/60">
+            <td class="py-2.5 px-3 font-bold text-stone-900 dark:text-white">Year ${yr}</td>
+            <td class="py-2.5 px-3 text-right text-stone-600 dark:text-stone-300">${formatINR(startBal)}</td>
+            <td class="py-2.5 px-3 text-right font-semibold text-stone-900 dark:text-white">${formatINR(emi * mCount)}</td>
+            <td class="py-2.5 px-3 text-right font-semibold text-emerald-700 dark:text-emerald-400">${formatINR(yrPrincipal)}</td>
+            <td class="py-2.5 px-3 text-right font-semibold text-amber-700 dark:text-amber-400">${formatINR(yrInterest)}</td>
+            <td class="py-2.5 px-3 text-right text-stone-600 dark:text-stone-300">${formatINR(balance)}</td>
+          </tr>
+        `);
+      }
+      tbody.innerHTML = rows.join('');
+    }
+
+    function proceedFromEmiToPayment() {
+      const selectedId = document.getElementById('emiVehicleSelect').value || vehicles[0].id;
+      paymentPlan = 'emi';
+      startPurchaseFlow(selectedId);
+    }
+
+    // -----------------------------------------------------------------------
+    // 7. MANDATORY LOGIN TRIGGER ON PURCHASE & UNIFIED PAYMENT PAGE
+    // -----------------------------------------------------------------------
+    function startPurchaseFlow(carId) {
+      const car = vehicles.find(c => c.id === carId);
+      if (!car) return;
+      if (car.quantity <= 0) {
+        showToast('This vehicle is currently booked out!', 'red');
+        return;
+      }
+
+      closeCarStudioModal();
+
+      // Mandatory Login Gate: If user is not signed in, automatically trigger Login Modal!
+      if (!currentUser) {
+        pendingCheckoutCarId = carId;
+        openAuthPage(true, `${car.make} ${car.model}`);
+        showToast(`Please sign in to book the ${car.make} ${car.model}.`, 'red');
+        return;
+      }
+
+      openPaymentViewForCar(carId);
+    }
+
+    function openPaymentViewForCar(carId) {
+      checkoutCarId = carId;
+      document.getElementById('activeCheckoutFormWrapper').classList.remove('hidden');
+      document.getElementById('paymentReceiptPanel').classList.add('hidden');
+      if (currentUser) {
+        document.getElementById('payBuyerName').value = currentUser.name;
+        document.getElementById('payBuyerEmail').value = currentUser.email;
+        document.getElementById('checkoutLoggedUserBadge').textContent = `Signed in as ${currentUser.name} (${currentUser.email})`;
+      }
+      switchMainView('payment');
+      selectPaymentPlan(paymentPlan);
+      updatePaymentSummaryCard();
+    }
+
+    function selectPaymentPlan(plan) {
+      paymentPlan = plan;
+      const fullBtn = document.getElementById('payPlanFullBtn');
+      const emiBtn = document.getElementById('payPlanEmiBtn');
+      const loanSec = document.getElementById('checkoutLoanEmiSection');
+
+      if (plan === 'emi') {
+        emiBtn.className = 'pop-btn p-4 rounded-xl border-2 border-crimson-700 bg-crimson-50/40 dark:bg-crimson-900/10 text-left';
+        fullBtn.className = 'pop-btn p-4 rounded-xl border border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-charcoal-900 text-left';
+        loanSec.classList.remove('hidden');
+      } else {
+        fullBtn.className = 'pop-btn p-4 rounded-xl border-2 border-emerald-600 bg-emerald-50/30 dark:bg-emerald-900/10 text-left';
+        emiBtn.className = 'pop-btn p-4 rounded-xl border border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-charcoal-900 text-left';
+        loanSec.classList.add('hidden');
+      }
+      updatePaymentSummaryCard();
+    }
+
+    function setCheckoutLoanBank(bankName, rate) {
+      checkoutLoanBank = bankName;
+      checkoutLoanRate = rate;
+      updatePaymentSummaryCard();
+      showToast(`Selected ${bankName} @ ${rate}% p.a.`);
+    }
+
+    function selectPaymentInstrument(inst) {
+      paymentInstrument = inst;
+      const activeClass = 'pop-btn py-2.5 px-2.5 rounded-xl text-xs font-bold bg-crimson-700 text-white shadow-sm';
+      const idleClass = 'pop-btn py-2.5 px-2.5 rounded-xl text-xs font-semibold bg-stone-100 dark:bg-charcoal-900 text-stone-700 dark:text-stone-300';
+
+      document.getElementById('instUpiBtn').className = inst === 'upi' ? activeClass : idleClass;
+      document.getElementById('instCardBtn').className = inst === 'card' ? activeClass : idleClass;
+      document.getElementById('instNetbankingBtn').className = inst === 'netbanking' ? activeClass : idleClass;
+      document.getElementById('instWireBtn').className = inst === 'wire' ? activeClass : idleClass;
+
+      document.getElementById('paymentPanelUpi').classList.toggle('hidden', inst !== 'upi');
+      document.getElementById('paymentPanelCard').classList.toggle('hidden', inst !== 'card');
+      document.getElementById('paymentPanelNetbanking').classList.toggle('hidden', inst !== 'netbanking');
+      document.getElementById('paymentPanelWire').classList.toggle('hidden', inst !== 'wire');
+    }
+
+    function updateUpiDeepLinksAndQr(amountRupees, carName) {
+      const encodedName = encodeURIComponent('AuraDrive India Showroom');
+      const encodedNote = encodeURIComponent('Booking ' + carName);
+      const upiUri = `upi://pay?pa=auradrive.india@hdfcbank&pn=${encodedName}&am=${amountRupees}&cu=INR&tn=${encodedNote}`;
+
+      ['upiLinkGpay', 'upiLinkPhonepe', 'upiLinkPaytm', 'upiLinkBhim'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.setAttribute('href', upiUri);
+      });
+
+      const qrBox = document.getElementById('upiQrBox');
+      if (qrBox) {
+        qrBox.innerHTML = `
+          <svg viewBox="0 0 100 100" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" fill="#FFFFFF" rx="6"/>
+            <rect x="8" y="8" width="26" height="26" fill="none" stroke="#141417" stroke-width="5"/>
+            <rect x="15" y="15" width="12" height="12" fill="#141417"/>
+            <rect x="66" y="8" width="26" height="26" fill="none" stroke="#141417" stroke-width="5"/>
+            <rect x="73" y="15" width="12" height="12" fill="#141417"/>
+            <rect x="8" y="66" width="26" height="26" fill="none" stroke="#141417" stroke-width="5"/>
+            <rect x="15" y="73" width="12" height="12" fill="#141417"/>
+            <rect x="42" y="12" width="6" height="18" fill="#141417"/>
+            <rect x="52" y="20" width="8" height="8" fill="#141417"/>
+            <rect x="38" y="38" width="24" height="24" rx="4" fill="#BE123C"/>
+            <text x="50" y="53" fill="#FFFFFF" font-size="8" font-weight="bold" text-anchor="middle">UPI</text>
+            <rect x="12" y="44" width="20" height="6" fill="#141417"/>
+            <rect x="68" y="44" width="22" height="6" fill="#141417"/>
+            <rect x="44" y="68" width="14" height="6" fill="#141417"/>
+            <rect x="66" y="66" width="24" height="8" fill="#141417"/>
+            <rect x="66" y="80" width="12" height="12" fill="#141417"/>
+            <rect x="82" y="84" width="10" height="8" fill="#141417"/>
+          </svg>
+        `;
+      }
+    }
+
+    function triggerUpiAppRedirect(appName) {
+      const dueStr = document.getElementById('paySumTotalDue').textContent;
+      showToast(`Opening ${appName} with pre-filled amount ${dueStr}...`);
+    }
+
+    function verifyUpiVpa() {
+      const vpa = (document.getElementById('upiVpaInput').value || '').trim();
+      const statusEl = document.getElementById('upiVpaStatus');
+      if (!vpa.includes('@')) {
+        statusEl.className = 'text-[11px] font-semibold text-rose-600';
+        statusEl.textContent = '✕ Please enter a valid UPI ID containing "@" (e.g. name@okhdfcbank)';
+        return;
+      }
+      const handle = vpa.split('@')[0].toUpperCase().replace(/[^A-Z ]/g, ' ');
+      statusEl.className = 'text-[11px] font-semibold text-emerald-700 dark:text-emerald-400';
+      statusEl.textContent = `✓ Verified Account Holder: ${handle || 'VERIFIED BUYER'} (${vpa.split('@')[1].toUpperCase()})`;
+      showToast(`Verified UPI ID: ${vpa}`);
+    }
+
+    function syncCardPreview() {
+      const num = document.getElementById('cardNumInput').value || '4532 •••• •••• 8891';
+      const holder = document.getElementById('cardHolderInput').value || 'KARTHIK SHETTY';
+      const exp = document.getElementById('cardExpInput').value || '08/29';
+      document.getElementById('cardPreviewNumber').textContent = num;
+      document.getElementById('cardPreviewHolder').textContent = holder.toUpperCase();
+      document.getElementById('cardPreviewExpiry').textContent = exp;
+      const badge = document.getElementById('cardNetworkBadge');
+      if (num.startsWith('6')) badge.textContent = 'RUPAY PLATINUM';
+      else if (num.startsWith('5')) badge.textContent = 'MASTERCARD WORLD';
+      else if (num.startsWith('3')) badge.textContent = 'AMEX';
+      else badge.textContent = 'VISA INFINITE';
+    }
+
+    function selectNetbankingBank(bankName) {
+      selectedNetbankName = bankName;
+      document.getElementById('netbankingBankName').value = bankName;
+      showToast(`Selected ${bankName} for NetBanking.`);
+    }
+
+    function copyEscrowDetails() {
+      const text = 'Beneficiary: AuraDrive India Auto Escrow Ltd | A/C: 50200088491022 | IFSC: HDFC0000240';
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text);
+        }
+      } catch (e) {}
+      showToast('Copied Escrow Account & IFSC (HDFC0000240) to clipboard!');
+    }
+
+    function updatePaymentSummaryCard() {
+      const car = vehicles.find(c => c.id === checkoutCarId) || vehicles[0];
+      if (!car) return;
+
+      document.getElementById('paySummaryStockBadge').textContent = `${car.quantity} IN STOCK`;
+      document.getElementById('paySummaryVisual').innerHTML = renderCarVisualHtml(car, 0);
+      document.getElementById('paySummaryCategory').textContent = `${car.make} • ${car.category}`;
+      document.getElementById('paySummaryTitle').textContent = car.model;
+      document.getElementById('paySummarySpecs').textContent = `${car.engine} • ${car.hp} BHP • ${car.mileageText}`;
+
+      const onRoad = calculateOnRoadPrice(car.price);
+      const deliveryMode = document.getElementById('payDeliveryMode').value;
+      const doorstepFee = deliveryMode === 'enclosed' ? 15000 : 0;
+      const totalOnRoadWithDelivery = onRoad.totalOnRoad + doorstepFee;
+
+      document.getElementById('paySumBasePrice').textContent = formatINR(onRoad.exShowroom);
+      document.getElementById('paySumRegFee').textContent = formatINR(onRoad.rtoTax);
+      document.getElementById('paySumDelivery').textContent = formatINR(onRoad.insuranceAndTcs + doorstepFee);
+      document.getElementById('paySumOnRoadTotal').textContent = formatINR(totalOnRoadWithDelivery);
+
+      // Read Loan & EMI sliders on Payment Page
+      const downPct = Number(document.getElementById('chkDownPctInput').value || 20);
+      const tenureMonths = Number(document.getElementById('chkTenureInput').value || 60);
+      const downPaymentEx = Math.round(car.price * (downPct / 100));
+      const loanPrincipal = Math.max(0, car.price - downPaymentEx);
+      const monthlyEmi = calculateQuickIndianEmi(car.price, checkoutLoanRate, downPct, tenureMonths);
+      const totalInterest = Math.max(0, (monthlyEmi * tenureMonths) - loanPrincipal);
+
+      document.getElementById('chkDownPctLabel').textContent = downPct + '%';
+      document.getElementById('chkDownAmtLabel').textContent = formatINR(downPaymentEx);
+      document.getElementById('chkTenureLabel').textContent = `${tenureMonths} Months (${(tenureMonths / 12).toFixed(0)} Yrs)`;
+      document.getElementById('chkSanctionedLoanVal').textContent = formatINR(loanPrincipal);
+      document.getElementById('chkMonthlyEmiVal').textContent = formatINR(monthlyEmi) + ' / mo';
+      document.getElementById('chkTotalInterestVal').textContent = formatINR(totalInterest);
+
+      const emiNote = document.getElementById('paySumEmiNote');
+      let amountDueNum = 0;
+      if (paymentPlan === 'emi') {
+        amountDueNum = downPaymentEx + onRoad.rtoTax + onRoad.insuranceAndTcs + doorstepFee;
+        document.getElementById('paySumDueLabel').textContent = `Payable Today (${downPct}% Down + RTO/Ins):`;
+        document.getElementById('paySumTotalDue').textContent = formatINR(amountDueNum);
+        emiNote.classList.remove('hidden');
+        emiNote.innerHTML = `
+          <div class="font-bold">✓ Active Auto Loan: ${checkoutLoanBank} (${checkoutLoanRate}% p.a.)</div>
+          <div>Loan Principal: <strong>${formatINR(loanPrincipal)}</strong> • Monthly EMI: <strong>${formatINR(monthlyEmi)}/mo</strong> for ${tenureMonths} months</div>
+        `;
+      } else {
+        amountDueNum = totalOnRoadWithDelivery;
+        document.getElementById('paySumDueLabel').textContent = `Total On-Road Payable Today:`;
+        document.getElementById('paySumTotalDue').textContent = formatINR(amountDueNum);
+        emiNote.classList.add('hidden');
+      }
+
+      updateUpiDeepLinksAndQr(amountDueNum, `${car.make} ${car.model}`);
+    }
+
+    function completeVehiclePurchase() {
+      const car = vehicles.find(c => c.id === checkoutCarId);
+      if (!car || car.quantity <= 0) {
+        showToast('Vehicle is out of stock!', 'red');
+        return;
+      }
+      car.quantity -= 1;
+      saveState();
+
+      const buyerName = document.getElementById('payBuyerName').value || 'Valued Customer';
+      const dueAmount = document.getElementById('paySumTotalDue').textContent;
+      const bookingId = 'AD-IND-' + Math.floor(100000 + Math.random() * 900000);
+
+      const modeMap = {
+        upi: 'UPI App / QR',
+        card: 'Credit / Debit Card',
+        netbanking: `NetBanking (${selectedNetbankName})`,
+        wire: 'RTGS / NEFT Escrow Transfer'
+      };
+      const methodLabel = modeMap[paymentInstrument] || 'UPI';
+      const downPct = Number(document.getElementById('chkDownPctInput').value || 20);
+      const tenureMonths = Number(document.getElementById('chkTenureInput').value || 60);
+      const monthlyEmi = calculateQuickIndianEmi(car.price, checkoutLoanRate, downPct, tenureMonths);
+
+      showToast(`Booking Confirmed for ${car.make} ${car.model}!`);
+
+      document.getElementById('receiptDetailsBox').innerHTML = `
+        <div class="flex justify-between py-1.5 border-b border-stone-200 dark:border-stone-700"><span>BOOKING REFERENCE:</span><span class="font-bold text-crimson-700 dark:text-crimson-400">${bookingId}</span></div>
+        <div class="flex justify-between py-1.5 border-b border-stone-200 dark:border-stone-700"><span>BUYER NAME:</span><span class="font-bold text-stone-900 dark:text-white">${buyerName}</span></div>
+        <div class="flex justify-between py-1.5 border-b border-stone-200 dark:border-stone-700"><span>VEHICLE ALLOTTED:</span><span class="font-bold text-stone-900 dark:text-white">${car.make} ${car.model}</span></div>
+        <div class="flex justify-between py-1.5 border-b border-stone-200 dark:border-stone-700"><span>RTO LOCATION:</span><span class="text-stone-700 dark:text-stone-300">${getCityName()}</span></div>
+        <div class="flex justify-between py-1.5 border-b border-stone-200 dark:border-stone-700"><span>FINANCING PLAN:</span><span class="font-semibold">${paymentPlan === 'emi' ? `${checkoutLoanBank} (${formatINR(monthlyEmi)}/mo × ${tenureMonths}m)` : '100% Full On-Road Settlement'}</span></div>
+        <div class="flex justify-between py-1.5 border-b border-stone-200 dark:border-stone-700"><span>PAYMENT INSTRUMENT:</span><span class="font-semibold">${methodLabel}</span></div>
+        <div class="flex justify-between py-1.5"><span>AMOUNT PAID TODAY:</span><span class="font-extrabold text-emerald-700 dark:text-emerald-400">${dueAmount}</span></div>
+      `;
+
+      document.getElementById('activeCheckoutFormWrapper').classList.add('hidden');
+      document.getElementById('paymentReceiptPanel').classList.remove('hidden');
+      updatePaymentSummaryCard();
+      renderShowroomGrid();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // -----------------------------------------------------------------------
+    // 8. STUDIO GALLERY & FULL SPECS MODAL
+    // -----------------------------------------------------------------------
+    function openCarStudioModal(carId) {
+      studioCarId = carId;
+      studioAngleIdx = cardAngleState[carId] !== undefined ? cardAngleState[carId] : 0;
+      renderCarStudioModal();
+      document.getElementById('carStudioModalOverlay').classList.remove('hidden');
+    }
+
+    function closeCarStudioModal() {
+      document.getElementById('carStudioModalOverlay').classList.add('hidden');
+    }
+
+    function selectStudioAngle(idx) {
+      studioAngleIdx = idx;
+      cardAngleState[studioCarId] = idx;
+      renderCarStudioModal();
+      renderShowroomGrid();
+    }
+
+    function renderCarStudioModal() {
+      const car = vehicles.find(c => c.id === studioCarId);
+      if (!car) return;
+      document.getElementById('studioModalCategory').textContent = `${car.make} • ${car.category} • ${car.quantity} IN STOCK`;
+      document.getElementById('studioModalTitle').textContent = car.model;
+      document.getElementById('studioStageContainer').innerHTML = renderCarVisualHtml(car, studioAngleIdx);
+
+      for (let i = 0; i < 3; i++) {
+        const btn = document.getElementById('studioAngleBtn' + i);
+        if (btn) {
+          btn.className = i === studioAngleIdx
+            ? 'pop-btn py-2 px-2 rounded-xl text-xs font-bold bg-charcoal-900 text-white dark:bg-white dark:text-charcoal-900 shadow-sm'
+            : 'pop-btn py-2 px-2 rounded-xl text-xs font-semibold bg-stone-100 dark:bg-charcoal-900 text-stone-700 dark:text-stone-300';
+        }
+      }
+
+      const onRoad = calculateOnRoadPrice(car.price);
+      document.getElementById('studioSpecsList').innerHTML = `
+        <div class="flex justify-between py-1.5 border-b border-stone-200/70 dark:border-stone-700"><span class="text-stone-500">Engine / Battery:</span><span class="font-bold text-stone-900 dark:text-white text-right">${car.engine}</span></div>
+        <div class="flex justify-between py-1.5 border-b border-stone-200/70 dark:border-stone-700"><span class="text-stone-500">Power & Torque:</span><span class="font-bold text-stone-900 dark:text-white">${car.hp} BHP • ${car.torque}</span></div>
+        <div class="flex justify-between py-1.5 border-b border-stone-200/70 dark:border-stone-700"><span class="text-stone-500">ARAI Mileage / Range:</span><span class="font-bold text-emerald-700 dark:text-emerald-400">${car.mileageText}</span></div>
+        <div class="flex justify-between py-1.5 border-b border-stone-200/70 dark:border-stone-700"><span class="text-stone-500">Transmission:</span><span class="font-semibold text-stone-900 dark:text-white">${car.transmission}</span></div>
+        <div class="flex justify-between py-1.5 border-b border-stone-200/70 dark:border-stone-700"><span class="text-stone-500">Ground Clearance & Boot:</span><span class="font-semibold text-stone-900 dark:text-white">${car.groundClearance} • ${car.bootSpace}</span></div>
+        <div class="flex justify-between py-1.5 border-b border-stone-200/70 dark:border-stone-700"><span class="text-stone-500">Safety & NCAP:</span><span class="font-semibold text-stone-900 dark:text-white text-right">${car.safety}</span></div>
+        <div class="flex justify-between py-1.5"><span class="text-stone-500">Est. On-Road (${getCityName().split(' ')[0]}):</span><span class="font-bold text-stone-900 dark:text-white">${formatLakh(onRoad.totalOnRoad)}</span></div>
+      `;
+
+      document.getElementById('studioPriceVal').textContent = formatLakh(car.price);
+      document.getElementById('studioEmiVal').textContent = formatINR(calculateQuickIndianEmi(car.price)) + '/mo';
+
+      const pBtn = document.getElementById('studioPurchaseBtn');
+      pBtn.disabled = car.quantity <= 0;
+      pBtn.textContent = car.quantity <= 0 ? 'Sold Out' : 'Book Now / Proceed to Payment →';
+    }
+
+    function toggleCompareFromStudio() {
+      toggleCompareCar(studioCarId);
+    }
+
+    function openEmiFromStudio() {
+      closeCarStudioModal();
+      openEmiForCar(studioCarId);
+    }
+
+    function purchaseFromStudio() {
+      startPurchaseFlow(studioCarId);
+    }
+
+    // -----------------------------------------------------------------------
+    // 9. AUTHENTICATION & AUTOMATIC REDIRECT TO PAYMENT PAGE
+    // -----------------------------------------------------------------------
+    function openAuthPage(isTriggeredByPurchase = false, carTitle = '') {
+      const banner = document.getElementById('authGateBanner');
+      const carSpan = document.getElementById('authGateCarName');
+      if (isTriggeredByPurchase && carTitle) {
+        banner.classList.remove('hidden');
+        carSpan.textContent = carTitle;
+      } else {
+        banner.classList.add('hidden');
+      }
+      document.getElementById('authModalOverlay').classList.remove('hidden');
+      updateAuthUiState();
+    }
+
+    function closeAuthPage() {
+      document.getElementById('authModalOverlay').classList.add('hidden');
+    }
+
+    function switchAuthTab(mode) {
+      authMode = mode;
+      const loginBtn = document.getElementById('authTabLogin');
+      const regBtn = document.getElementById('authTabRegister');
+      const nameWrap = document.getElementById('authNameWrapper');
+      const submitText = document.getElementById('authSubmitBtnText');
+
+      if (mode === 'login') {
+        loginBtn.className = 'pop-btn py-2 rounded-lg text-xs font-bold bg-white dark:bg-charcoal-800 text-stone-900 dark:text-white shadow-sm';
+        regBtn.className = 'pop-btn py-2 rounded-lg text-xs font-semibold text-stone-500';
+        nameWrap.classList.add('hidden');
+        submitText.textContent = pendingCheckoutCarId ? 'Sign In & Continue to Payment Page →' : 'Sign In →';
+      } else {
+        regBtn.className = 'pop-btn py-2 rounded-lg text-xs font-bold bg-white dark:bg-charcoal-800 text-stone-900 dark:text-white shadow-sm';
+        loginBtn.className = 'pop-btn py-2 rounded-lg text-xs font-semibold text-stone-500';
+        nameWrap.classList.remove('hidden');
+        submitText.textContent = pendingCheckoutCarId ? 'Register & Continue to Payment Page →' : 'Create Account →';
+      }
+    }
+
+    function handleAuthSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('authEmailInput').value.trim();
+      const rawName = document.getElementById('authNameInput').value.trim();
+      const name = rawName || 'Karthik Shetty';
+
+      currentUser = {
+        name,
+        email,
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.' + btoa(email)
+      };
+
+      updateAuthUiState();
+      closeAuthPage();
+
+      // If login was triggered by clicking Purchase / Book Now, automatically open the Payment Page!
+      if (pendingCheckoutCarId) {
+        const targetId = pendingCheckoutCarId;
+        pendingCheckoutCarId = null;
+        showToast(`Signed in as ${name}! Redirecting to Booking & Payment Page...`);
+        openPaymentViewForCar(targetId);
+      } else {
+        showToast(`Welcome, ${name}! You are now signed in.`);
+      }
+    }
+
+    function logoutUser() {
+      currentUser = null;
+      pendingCheckoutCarId = null;
+      updateAuthUiState();
+      showToast('Signed out of your account.', 'red');
+      closeAuthPage();
+      switchMainView('showroom');
+    }
+
+    function updateAuthUiState() {
+      const btnText = document.getElementById('topRightAuthText');
+      const sessionBox = document.getElementById('authCurrentSessionBox');
+      if (currentUser) {
+        btnText.textContent = currentUser.name;
+        sessionBox.classList.remove('hidden');
+      } else {
+        btnText.textContent = 'Login / Sign Up';
+        sessionBox.classList.add('hidden');
+      }
+    }
+
+    function switchMainView(view) {
+      if (view === 'payment' && !currentUser) {
+        pendingCheckoutCarId = checkoutCarId || vehicles[0].id;
+        const car = vehicles.find(c => c.id === pendingCheckoutCarId) || vehicles[0];
+        openAuthPage(true, `${car.make} ${car.model}`);
+        return;
+      }
+
+      document.getElementById('viewShowroom').classList.toggle('hidden', view !== 'showroom');
+      document.getElementById('viewCompare').classList.toggle('hidden', view !== 'compare');
+      document.getElementById('viewEmi').classList.toggle('hidden', view !== 'emi');
+      document.getElementById('viewPayment').classList.toggle('hidden', view !== 'payment');
+
+      const activeNav = 'pop-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-bold bg-charcoal-900 text-white dark:bg-white dark:text-charcoal-900 shadow-sm flex items-center gap-1.5';
+      const idleNav = 'pop-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white flex items-center gap-1.5';
+
+      document.getElementById('navBtnShowroom').className = view === 'showroom' ? activeNav : idleNav;
+      document.getElementById('navBtnCompare').className = view === 'compare' ? activeNav : idleNav;
+      document.getElementById('navBtnEmi').className = view === 'emi' ? activeNav : idleNav;
+
+      if (view === 'compare') renderCompareView();
+      if (view === 'emi') recalculateEmi();
+      if (view === 'payment') updatePaymentSummaryCard();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      populateEmiSelect();
+      updateAuthUiState();
+      updateCompareBadges();
+      renderShowroomGrid();
+      renderCompareView();
+      recalculateEmi();
+    });
+  </script>
+</body>
+</html>

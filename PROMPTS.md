@@ -1,0 +1,4 @@
+# Raw AI Prompts Log (PROMPTS.md)
+
+## Prompt 1 — Full-Stack Showroom, Multi-Angle Car Views, Spec Compare, EMI & Payment Page
+> build the modern website with good animation pop up bottons step by step as per the requirements with a dark theme with some green and red touch to the theme and the website shouldn't need to add admin section separately and the website should open directly then they ask for login or signup on top right after clicking that login page should open and app should contain all types of cars having different angle photos (take the readily available images from other websites its just a prototype for my project so no need to mention the credits and need a separate payment page if we click on purchase and the comparing should be done mainly by specification and mention price below and add a emi calculator
