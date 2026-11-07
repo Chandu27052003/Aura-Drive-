@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'apex-motors-super-secret-jwt-key';
+const { jwtSecret: JWT_SECRET } = require('./config');
 const dbPath = process.env.DB_PATH || path.join(__dirname, '../dealership.sqlite');
 const db = new sqlite3.Database(dbPath);
 
@@ -33,6 +33,8 @@ db.serialize(() => {
 });
 
 const app = express();
+// Keep the database available to local maintenance and isolated test fixtures.
+app.locals.db = db;
 app.use(cors());
 app.use(express.json());
 
@@ -40,7 +42,7 @@ function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
   if (!token) return res.status(401).json({ error: 'Authentication token required' });
-  jwt.verify(token, JWT_SECRET, (err, user) => {
+  jwt.verify(token, JWT_SECRET, { algorithms: ['HS256'] }, (err, user) => {
     if (err) return res.status(403).json({ error: 'Invalid or expired token' });
     req.user = user;
     next();
@@ -48,15 +50,25 @@ function authenticateToken(req, res, next) {
 }
 
 function requireAdmin(req, res, next) {
-  if (!req.user || req.user.role !== 'admin') {
+  if (!req.user || !Number.isInteger(req.user.id)) {
     return res.status(403).json({ error: 'Admin privileges required' });
   }
-  next();
+  // Check the current database role so demoted or deleted admins lose access
+  // immediately, even while a previously issued token is still valid.
+  db.get('SELECT role FROM users WHERE id = ?', [req.user.id], (err, user) => {
+    if (err) return res.status(500).json({ error: 'Unable to verify admin privileges' });
+    if (!user || user.role !== 'admin') {
+      return res.status(403).json({ error: 'Admin privileges required' });
+    }
+    next();
+  });
 }
 
 // POST /api/auth/register
 app.post('/api/auth/register', (req, res) => {
-  const { name, email, password, role = 'customer' } = req.body;
+  const { name, email, password } = req.body;
+  // Public registration must never grant privileges supplied by the caller.
+  const role = 'customer';
   if (!email || !password) return res.status(400).json({ error: 'Email and password required' });
   const hashed = bcrypt.hashSync(password, 8);
   db.run(
@@ -105,8 +117,8 @@ app.get('/api/vehicles/search', (req, res) => {
   });
 });
 
-// POST /api/vehicles (Protected)
-app.post('/api/vehicles', authenticateToken, (req, res) => {
+// POST /api/vehicles (Admin only)
+app.post('/api/vehicles', authenticateToken, requireAdmin, (req, res) => {
   const { id, make, model, category, price, quantity, hp = 500, engine = '4.0L V8', zeroToSixty = 3.5 } = req.body;
   const vId = id || `car-${Date.now()}`;
   db.run(
@@ -119,8 +131,8 @@ app.post('/api/vehicles', authenticateToken, (req, res) => {
   );
 });
 
-// PUT /api/vehicles/:id (Protected)
-app.put('/api/vehicles/:id', authenticateToken, (req, res) => {
+// PUT /api/vehicles/:id (Admin only)
+app.put('/api/vehicles/:id', authenticateToken, requireAdmin, (req, res) => {
   const { make, model, category, price, quantity } = req.body;
   db.run(
     'UPDATE vehicles SET make = ?, model = ?, category = ?, price = ?, quantity = ? WHERE id = ?',

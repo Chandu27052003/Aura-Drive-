@@ -4,3 +4,5 @@ backend/coverage/
 backend/dealership.sqlite
 .DS_Store
 npm-debug.log*
+.env
+.env.*

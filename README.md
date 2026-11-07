@@ -80,11 +80,23 @@ npm install
 npm test
 ```
 
-### 3) Start the API server
+### 3) Configure a signing secret and start the API server
+
+The API requires `JWT_SECRET` to contain at least 32 bytes of secret material.
+Use a cryptographically random value, not a password or a value committed to Git.
+There is no default signing key, and startup fails if the key is missing or too short.
+
+For a temporary local session (Bash):
 
 ```bash
+export JWT_SECRET="$(node -e "process.stdout.write(require('crypto').randomBytes(32).toString('hex'))")"
 npm start
 ```
+
+For a deployed instance, set a stable, randomly generated `JWT_SECRET` through the
+hosting provider's secret manager. All instances must use the same key. Changing
+it invalidates existing sessions. Do not print or commit the deployed secret.
+The app reads environment variables directly; it does not automatically load `.env` files.
 
 The API will run locally at:
 
@@ -117,6 +129,41 @@ npx serve frontend
 - `DELETE /api/vehicles/:id`
 - `POST /api/vehicles/:id/purchase`
 - `POST /api/vehicles/:id/restock`
+
+## Authentication and administrator access
+
+- Public registration always creates a `customer`, even if the request includes a role.
+- Browsing and searching inventory remain public.
+- Purchases require a signed-in customer or administrator.
+- Creating, updating, deleting, and restocking inventory require an administrator.
+- Administrator access is checked against the current database role on each request,
+  so removing or demoting an administrator revokes inventory access immediately.
+
+To provision an administrator for local development, first register the account
+normally. A trusted operator can then promote that specific account directly in
+the database, using a SQLite client with the correct database selected:
+
+```sql
+UPDATE users SET role = 'admin' WHERE email = 'your-admin@example.com';
+```
+
+Replace the example email with the intended registered account and verify that
+exactly one row was changed. There is deliberately no public role-management
+endpoint. Sign in again after promotion so the client receives the current role.
+
+When upgrading an existing installation, review existing administrator accounts
+and demote any that were not provisioned by a trusted operator. Rotate the signing
+secret during the upgrade to invalidate tokens issued with the previous key.
+
+### Test isolation
+
+`npm test` uses an in-memory SQLite database and a random, test-only signing key.
+The suite creates administrator fixtures directly in that isolated database; it
+never promotes users through the registration API or modifies `dealership.sqlite`.
+It covers privilege escalation, all inventory mutation permissions, invalid tokens,
+administrator revocation, and customer purchases.
+The backend test workflow runs the same suite on Node.js 22 and 24 for relevant
+pushes and pull requests.
 
 ## AI Workflow
 
